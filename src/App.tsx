@@ -64,55 +64,64 @@ const DATA = {
     github: "https://github.com/parthbhagat1337",
     medium: "https://medium.com/@parthbhagat1337",
     summary:
-      "Cybersecurity Engineer with around 2 years of hands-on experience in offensive security, threat detection, and network security with Masters in Cybersecurity. I specialize in Vulnerability Assessment, Red Teaming, Threat hunting, Secure Network Design, and Incident Response Management. I excel at aligning technical defences with business objectives, ensuring compliance with industry standards.",
+      "Cybersecurity Engineer with hands-on experience in offensive security, threat detection, and network security with Masters in Cybersecurity. I specialize in Vulnerability Assessment, Red Teaming, Threat hunting, Secure Network Design, and Incident Response Management. I excel at aligning technical defences with business objectives, ensuring compliance with industry standards.",
   },
   skills: {
     offensive: [
       "Red Teaming",
       "VAPT",
-      "Burp Suite",
-      "Metasploit Pro",
-      "Havoc C2",
-      "Sliver",
+      "Web application Pentesting",
+      "Mobile Application Pentesting",
+      "API security testing",
+      "Command & Control(C2)",
+      "Phishing Campaign",
       "Active Directory Exploitation",
-      "BloodHound",
-      "CrackMapExec",
-      "Mimikatz",
+      "MITRE ATT&CK",
+      "OWASP Top 10",
+      "CyberKill Chain",
     ],
     defensive: [
       "Threat Hunting",
       "Incident Response",
       "IBM QRadar",
+      "Secone"
+      "SOC Radar"
       "Digital Forensics",
+      "Wireshark",
       "FTK",
       "Autopsy",
+      "Shodan",
       "Volatility",
-      "Cuckoo Sandbox",
-      "SIEM Analysis",
+      "Cuckoo/Anyrun Sandbox",
+      "SIEM/Log Analysis",
       "IOC Management",
     ],
     cloud: [
       "AWS Security",
+      "GuardDuty", 
+      "CloudTrail",
+      "Security Hub ",
       "Azure & GCP",
       "Terraform",
       "Ansible",
       "CI/CD (GitHub Actions)",
-      "Network Architecture Design",
-      "VLAN Segmentation",
+      "MFA",
+      "IAM security",
       "Firewall Configuration",
     ],
     dev: [
       "Python",
       "Bash",
       "PowerShell",
-      "SAST/DAST",
+      "Secure Scripting",
+      "SAST / DAST",
       "SonarQube",
       "Semgrep",
-      "API Security",
-      "Nmap",
-      "Wireshark",
-      "Shodan",
-      "Mobsf",
+      "OWASP ZAP",
+      "Burp Suite",
+      "Mobile Security Testing (MobSF)",
+      "CI/CD Security Integration",
+      "Secure Code Review"
     ],
   },
   experience: [
@@ -140,7 +149,13 @@ const DATA = {
       school: "Dublin Business School, Dublin, Ireland",
       period: "Sept 2024 - Sept 2025",
       details:
-        "Focus on Cloud Automation (Terraform/AWS), Network Forensics, and Secure Network Architecture. Key assessments include: Automated Container Deployment using Terraform and Ansible with GitHub CI/CD on AWS; Forensic Investigation using FTK, Autopsy, and Wireshark; Network Architecture Design for mid-sized company with VLAN segmentation and firewall configurations; SAST/DAST security testing; CTF Virtual Machine development; Business Continuity and Disaster Recovery Planning.",
+        "[+] Focus on Cloud Automation (Terraform/AWS).",
+        "[+]  Automated Container Deployment using Terraform, GitHub CI/CD pipeline, Ansible and Administration in the Cloud (AWS).",
+        "[+] Forensic Investigation of Disk Image using FTK and Autopsy and Network Forensics using Wireshark.
+        "[+]  Proposed a Network Architecture Design for a mid-sized company with secure, scalable, high-availability network with firewall configurations, VLAN segmentation, redundancy, and remote access security.",
+        "[+]  Performing SAST/DAST on provided applications.",
+        "[+] Created, Designed and Implemented a CTF Virtual Machine.",
+        "[+] Developed and delivered a Business Continuity and Disaster Recovery Plan for the Dublin City Hospital Scenario.",
     },
     {
       id: 2,
@@ -206,11 +221,11 @@ const DATA = {
   tools: [
     {
       category: "Security Testing",
-      items: ["Nessus", "Metasploit Pro", "Burp Suite", "Nmap", "Wireshark", "Secone"],
+      items: ["Nessus", "Metasploit Pro", "Burp Suite", "Nmap", "Wireshark","Custom Github Tools"],
     },
     {
       category: "SIEM & Monitoring",
-      items: ["IBM QRadar", "Log Analysis", "Correlation Rules", "Custom Detection"],
+      items: ["Secone", "IBM QRadar", "Log Analysis", "Correlation Rules", "Custom Detection"],
     },
     {
       category: "Red Team Tools",
@@ -218,7 +233,7 @@ const DATA = {
     },
     {
       category: "Code Security",
-      items: ["SonarQube", "Semgrep", "SAST/DAST", "Mobsf"],
+      items: ["SonarQube", "Semgrep", "SAST/DAST", "Mobsf", "Sync"],
     },
     {
       category: "Forensics",
@@ -230,7 +245,7 @@ const DATA = {
     },
     {
       category: "OSINT & Recon",
-      items: ["Shodan", "Threat Intelligence", "IOC Management"],
+      items: ["Shodan", "Threat Intelligence", "IOC Management", "Intelx", "OSINT"],
     },
   ] as ToolCategory[],
 }
