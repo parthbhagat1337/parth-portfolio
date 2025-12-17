@@ -119,14 +119,88 @@ const DATA = {
   ]
 };
 
+// --- Types for TypeScript ---
+
+interface Profile {
+  name: string;
+  title: string;
+  subtitles: string[];
+  location: string;
+  email: string;
+  linkedin: string;
+  github: string;
+  medium: string;
+  summary: string;
+}
+
+interface Skills {
+  offensive: string[];
+  defensive: string[];
+  cloud: string[];
+  dev: string[];
+}
+
+interface ExperienceItem {
+  id: number;
+  role: string;
+  company: string;
+  period: string;
+  description: string;
+  details: string[];
+}
+
+interface EducationItem {
+  id: number;
+  degree: string;
+  school: string;
+  period: string;
+  details: string;
+}
+
+interface Project {
+  title: string;
+  category: string;
+  desc: string;
+  tech: string[];
+}
+
+interface SectionHeadingProps {
+  children: React.ReactNode;
+  icon: React.ComponentType<{ className?: string; size?: number }>;
+}
+
+interface SkillCardProps {
+  title: string;
+  skills: string[];
+  icon: React.ComponentType<{ className?: string; size?: number }>;
+}
+
+interface TimelineItemProps {
+  data: ExperienceItem | EducationItem;
+  isLast?: boolean;
+}
+
+interface ProjectCardProps {
+  project: Project;
+}
+
+interface FolderIconProps {
+  size?: number;
+  className?: string;
+}
+
 // --- Components ---
 
 const MatrixBackground = () => {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    if (!canvas) return;
+
     const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
     let width = window.innerWidth;
     let height = window.innerHeight;
     canvas.width = width;
@@ -137,9 +211,9 @@ const MatrixBackground = () => {
     const alphabet = katakana + nums;
 
     const fontSize = 16;
-    const columns = width / fontSize;
+    const columns = Math.floor(width / fontSize);
 
-    const rainDrops = [];
+    const rainDrops: number[] = [];
     for (let x = 0; x < columns; x++) {
       rainDrops[x] = 1;
     }
@@ -149,7 +223,7 @@ const MatrixBackground = () => {
       ctx.fillRect(0, 0, width, height);
 
       ctx.fillStyle = '#0F0';
-      ctx.font = fontSize + 'px monospace';
+      ctx.font = `${fontSize}px monospace`;
 
       for (let i = 0; i < rainDrops.length; i++) {
         const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
@@ -165,6 +239,7 @@ const MatrixBackground = () => {
     const interval = setInterval(draw, 30);
 
     const handleResize = () => {
+      if (!canvas) return;
       width = window.innerWidth;
       height = window.innerHeight;
       canvas.width = width;
@@ -187,7 +262,7 @@ const MatrixBackground = () => {
   );
 };
 
-const SectionHeading = ({ children, icon: Icon }) => (
+const SectionHeading: React.FC<SectionHeadingProps> = ({ children, icon: Icon }) => (
   <div className="flex items-center gap-3 mb-8">
     <div className="p-2 bg-green-500/10 rounded border border-green-500/30">
       <Icon className="text-green-500" size={24} />
@@ -199,7 +274,7 @@ const SectionHeading = ({ children, icon: Icon }) => (
   </div>
 );
 
-const SkillCard = ({ title, skills, icon: Icon }) => (
+const SkillCard: React.FC<SkillCardProps> = ({ title, skills, icon: Icon }) => (
   <div className="bg-zinc-900/50 border border-green-500/20 p-6 rounded-lg backdrop-blur-sm hover:border-green-500/50 transition-all duration-300 hover:shadow-[0_0_15px_rgba(34,197,94,0.1)] group">
     <div className="flex items-center gap-3 mb-4">
       <Icon className="text-green-400 group-hover:text-green-300 transition-colors" size={24} />
@@ -218,7 +293,7 @@ const SkillCard = ({ title, skills, icon: Icon }) => (
   </div>
 );
 
-const TimelineItem = ({ data, isLast }) => (
+const TimelineItem: React.FC<TimelineItemProps> = ({ data, isLast = false }) => (
   <div className="relative pl-8 pb-12 sm:pl-32 py-6 group">
     {/* Line */}
     {!isLast && (
@@ -241,19 +316,19 @@ const TimelineItem = ({ data, isLast }) => (
       </div>
       
       <h3 className="text-xl font-bold text-white mb-1 flex items-center gap-2">
-        {data.role || data.degree}
+        {('role' in data ? data.role : data.degree) as string}
       </h3>
       <div className="text-zinc-400 mb-4 font-medium flex items-center gap-2">
-        {data.company || data.school}
+        {('company' in data ? data.company : data.school) as string}
       </div>
       
-      {data.description && (
+      {'description' in data && data.description && (
         <p className="text-zinc-300 mb-4 text-sm leading-relaxed">
           {data.description}
         </p>
       )}
 
-      {data.details && Array.isArray(data.details) ? (
+      {'details' in data && Array.isArray(data.details) ? (
         <ul className="space-y-2">
           {data.details.map((point, idx) => (
             <li key={idx} className="flex items-start gap-2 text-sm text-zinc-400">
@@ -271,7 +346,7 @@ const TimelineItem = ({ data, isLast }) => (
   </div>
 );
 
-const ProjectCard = ({ project }) => (
+const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => (
   <div className="group relative bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden hover:border-green-500/50 transition-all duration-300 flex flex-col h-full">
     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
     
@@ -305,7 +380,7 @@ const ProjectCard = ({ project }) => (
 );
 
 // Fallback icon helper
-const FolderIcon = ({size, className}) => (
+const FolderIcon: React.FC<FolderIconProps> = ({ size = 24, className = '' }) => (
   <svg 
     xmlns="http://www.w3.org/2000/svg" 
     width={size} 
@@ -464,7 +539,7 @@ export default function App() {
           <SectionHeading icon={Briefcase}>Mission Timeline</SectionHeading>
           <div className="max-w-4xl mx-auto">
             {DATA.experience.map((job, idx) => (
-              <TimelineItem key={idx} data={job} />
+              <TimelineItem key={job.id} data={job} isLast={idx === DATA.experience.length - 1} />
             ))}
             <div className="my-12 flex items-center justify-center">
               <div className="h-px bg-zinc-800 w-full max-w-xs"></div>
@@ -472,7 +547,7 @@ export default function App() {
               <div className="h-px bg-zinc-800 w-full max-w-xs"></div>
             </div>
             {DATA.education.map((edu, idx) => (
-              <TimelineItem key={idx + 10} data={edu} isLast={idx === DATA.education.length - 1} />
+              <TimelineItem key={edu.id} data={edu} isLast={idx === DATA.education.length - 1} />
             ))}
           </div>
         </section>
@@ -560,7 +635,7 @@ export default function App() {
 
       </main>
 
-      <style jsx global>{`
+      <style>{`
         @keyframes blink {
           0%, 100% { opacity: 1; }
           50% { opacity: 0; }
