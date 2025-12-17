@@ -151,7 +151,7 @@ const DATA = {
       details: [
         "[+] Focus on Cloud Automation (Terraform/AWS).",
         "[+]  Automated Container Deployment using Terraform, GitHub CI/CD pipeline, Ansible and Administration in the Cloud (AWS).",
-        "[+] Forensic Investigation of Disk Image using FTK and Autopsy and Network Forensics using Wireshark.
+        "[+] Forensic Investigation of Disk Image using FTK and Autopsy and Network Forensics using Wireshark.",
         "[+]  Proposed a Network Architecture Design for a mid-sized company with secure, scalable, high-availability network with firewall configurations, VLAN segmentation, redundancy, and remote access security.",
         "[+]  Performing SAST/DAST on provided applications.",
         "[+] Created, Designed and Implemented a CTF Virtual Machine.",
