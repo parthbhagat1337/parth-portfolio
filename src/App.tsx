@@ -56,9 +56,9 @@ const DATA = {
       "Red Team Specialist",
       "Offensive Security Expert",
       "Threat Hunter & Incident Response",
-      "Secure Network Architect",
+      "CyberSecurity Architect",
     ],
-    location: "Dublin, Ireland",
+    location: "India",
     email: "parthp1337@gmail.com",
     linkedin: "https://www.linkedin.com/in/parth-bhagat-386954113/",
     github: "https://github.com/parthbhagat1337",
@@ -559,7 +559,7 @@ export default function App() {
           <div className="mb-8 flex justify-center">
             <div className="relative w-32 h-32 md:w-40 md:h-40">
               <img
-                src="https://raw.githubusercontent.com/parthbhagat1337/portfolio/main/new-photo.jpg"
+                src="https://github.com/parthbhagat1337/parth-portfolio/blob/main/Parth-bhagat-photo.JPG"
                 alt="Parth Dinesh Bhagat"
                 className="w-full h-full rounded-full object-cover border-4 border-green-500/50 shadow-lg shadow-green-500/20"
               />
