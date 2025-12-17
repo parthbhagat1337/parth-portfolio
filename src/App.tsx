@@ -21,7 +21,7 @@ import {
   type LucideIcon,
 } from "lucide-react"
 
-// --- Types & Interfaces ---
+// --- Types & Interfaces --- 
 
 interface Project {
   title: string
