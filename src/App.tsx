@@ -84,8 +84,8 @@ const DATA = {
       "Threat Hunting",
       "Incident Response",
       "IBM QRadar",
-      "Secone"
-      "SOC Radar"
+      "Secone",
+      "SOC Radar",
       "Digital Forensics",
       "Wireshark",
       "FTK",
@@ -148,7 +148,7 @@ const DATA = {
       degree: "M.Sc. in Cybersecurity",
       school: "Dublin Business School, Dublin, Ireland",
       period: "Sept 2024 - Sept 2025",
-      details:
+      details: [
         "[+] Focus on Cloud Automation (Terraform/AWS).",
         "[+]  Automated Container Deployment using Terraform, GitHub CI/CD pipeline, Ansible and Administration in the Cloud (AWS).",
         "[+] Forensic Investigation of Disk Image using FTK and Autopsy and Network Forensics using Wireshark.
@@ -156,6 +156,7 @@ const DATA = {
         "[+]  Performing SAST/DAST on provided applications.",
         "[+] Created, Designed and Implemented a CTF Virtual Machine.",
         "[+] Developed and delivered a Business Continuity and Disaster Recovery Plan for the Dublin City Hospital Scenario.",
+        ],
     },
     {
       id: 2,
