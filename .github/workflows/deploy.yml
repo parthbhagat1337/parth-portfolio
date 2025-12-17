@@ -1,34 +1,45 @@
 name: Deploy to GitHub Pages
 
+# Trigger the workflow on push to the main branch
 on:
   push:
     branches: [ main ]
+  # Optional: Also allow manual trigger from the GitHub UI
+  workflow_dispatch:
 
+# Grant necessary permissions for pushing to gh-pages branch
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write      # Required to push commits to the repository
+  pages: write         # Required for GitHub Pages deployment
+  id-token: write      # For future-proofing if using deploy-pages action
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
 
-      - name: Setup Node
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0     # Full history needed for some actions
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build
+      - name: Build project
         run: npm run build
+        # Your package.json should have: "build": "tsc && vite build" or just "vite build"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+          commit_message: "Deploy: ${{ github.sha }} - ${{ github.actor }}"
+          force_orphan: true   # Keeps gh-pages branch clean (recommended)
