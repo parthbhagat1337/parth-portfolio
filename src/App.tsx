@@ -560,7 +560,7 @@ export default function App() {
           <div className="mb-8 flex justify-center">
             <div className="relative w-32 h-32 md:w-40 md:h-40">
               <img
-                src="https://github.com/parthbhagat1337/parth-portfolio/blob/main/Parth-bhagat-photo.JPG"
+                src="https://github.com/parthbhagat1337/parth-portfolio/blob/bf63477ee01afd9f4031c67471779689dab007b2/Parth-bhagat-photo.JPG"
                 alt="Parth Dinesh Bhagat"
                 className="w-full h-full rounded-full object-cover border-4 border-green-500/50 shadow-lg shadow-green-500/20"
               />
