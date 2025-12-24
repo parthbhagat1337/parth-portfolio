@@ -67,62 +67,10 @@ const DATA = {
       "Cybersecurity Engineer with hands-on experience in offensive security, threat detection, and network security with Masters in Cybersecurity. I specialize in Vulnerability Assessment, Red Teaming, Threat hunting, Secure Network Design, and Incident Response Management. I excel at aligning technical defences with business objectives, ensuring compliance with industry standards.",
   },
   skills: {
-    offensive: [
-      "Red Teaming",
-      "VAPT",
-      "Web application Pentesting",
-      "Mobile Application Pentesting",
-      "API security testing",
-      "Command & Control(C2)",
-      "Phishing Campaign",
-      "Active Directory Exploitation",
-      "MITRE ATT&CK",
-      "OWASP Top 10",
-      "CyberKill Chain",
-    ],
-    defensive: [
-      "Threat Hunting",
-      "Incident Response",
-      "IBM QRadar",
-      "Secone",
-      "SOC Radar",
-      "Digital Forensics",
-      "Wireshark",
-      "FTK",
-      "Autopsy",
-      "Shodan",
-      "Volatility",
-      "Cuckoo/Anyrun Sandbox",
-      "SIEM/Log Analysis",
-      "IOC Management",
-    ],
-    cloud: [
-      "AWS Security",
-      "GuardDuty", 
-      "CloudTrail",
-      "Security Hub ",
-      "Azure & GCP",
-      "Terraform",
-      "Ansible",
-      "CI/CD (GitHub Actions)",
-      "MFA",
-      "IAM security",
-      "Firewall Configuration",
-    ],
-    dev: [
-      "Python",
-      "Bash",
-      "PowerShell",
-      "Secure Scripting",
-      "SAST / DAST",
-      "SonarQube",
-      "Semgrep",
-      "OWASP ZAP",
-      "Burp Suite",
-      "Mobile Security Testing (MobSF)",
-      "CI/CD Security Integration",
-      "Secure Code Review"
-    ],
+    offensive: ["Red Teaming", "VAPT", "Web Pentesting", "Mobile Security", "API Security", "C2 Frameworks", "Active Directory", "MITRE ATT&CK"],
+    defensive: ["Threat Hunting", "Incident Response", "IBM QRadar", "SOC Radar", "Digital Forensics", "Wireshark", "FTK", "SIEM"],
+    cloud: ["AWS Security", "GuardDuty", "Terraform", "Ansible", "CI/CD Security", "IAM", "Azure/GCP", "Network Security"],
+    dev: ["Python", "Bash", "PowerShell", "SAST/DAST", "SonarQube", "Semgrep", "Burp Suite", "Secure Coding"],
   },
   experience: [
     {
@@ -130,14 +78,13 @@ const DATA = {
       role: "Jr. Security Engineer",
       company: "ESDS Software Solutions Limited",
       period: "Jun 2022 - Feb 2024 | Nashik, India",
-      description: "Internal Red Teaming, Attack Surface Management, VAPT, and Threat Hunting.",
       details: [
-        "Internal Red Teaming: Designed and executed attack simulations (credential attacks, privilege escalation) using Havoc C2 and post-exploitation techniques.",
-        "Attack Surface Discovery: Conducted continuous discovery across Linux/Windows, identifying shadow systems and misconfigurations. Automated inventory via Python/Bash.",
-        "Collaboration: Worked with SOC teams to improve real-time detection logic and presented results to senior stakeholders for hardening recommendations.",
-        "VAPT Operations: Led engagements for BFSI, Government, and Enterprise clients covering Web Apps, APIs, Active Directory, and Network components.",
-        "Compliance: Created detailed reports and supported ISO 27001 (ISMS), SOC1, SOC2, and PCI-DSS compliance audits.",
-        "Threat Hunting & IR: Optimized SIEM (IBM QRadar) detection rules, delivered forensic analysis, and managed IOC updates based on threat intelligence."
+        "Internal Red Teaming: Designed and executed attack simulations using Havoc C2 and post-exploitation techniques.",
+        "Attack Surface Discovery: Conducted continuous discovery across Linux/Windows, identifying shadow systems and misconfigurations.",
+        "Collaboration: Worked with SOC teams to improve detection logic and presented results to senior stakeholders.",
+        "VAPT Operations: Led engagements for BFSI, Government, and Enterprise clients.",
+        "Compliance: Supported ISO 27001 (ISMS), SOC1, SOC2, and PCI-DSS compliance audits.",
+        "Threat Hunting: Optimized SIEM (IBM QRadar) detection rules and delivered forensic analysis."
       ],
     },
     {
@@ -145,13 +92,12 @@ const DATA = {
       role: "Cybersecurity Red Team Analyst",
       company: "WhiteBand Associates",
       period: "Jun 2021 - May 2022 | Nashik, India",
-      description: "Vulnerability Assessment, Penetration Testing, and Training Delivery.",
       details: [
-        "VAPT Support: Assisted in security engagements for small enterprises covering web applications, servers, and Active Directory environments.",
-        "Offensive Tasks: Performed reconnaissance, scanning, and exploitation validation in lab and client-approved environments.",
-        "Training Delivery: Guided trainees through hands-on offensive/defensive exercises and supported client-facing security workshops.",
-        "Infrastructure: Maintained physical and virtual lab environments (Linux/Windows) and handled network configuration for simulations.",
-        "Documentation: Prepared technical notes, training materials, and assessment findings summaries for internal and client use."
+        "VAPT Support: Assisted in security engagements covering web applications, servers, and Active Directory.",
+        "Offensive Tasks: Performed reconnaissance, scanning, and exploitation validation.",
+        "Training Delivery: Guided trainees through hands-on offensive/defensive exercises.",
+        "Infrastructure: Maintained physical and virtual lab environments (Linux/Windows).",
+        "Documentation: Prepared technical notes and assessment findings summaries."
       ],
     }
   ] as ExperienceItem[],
@@ -163,17 +109,16 @@ const DATA = {
       period: "Sept 2024 - Sept 2025",
       details: [
         "[+] Focus on Cloud Automation (Terraform/AWS).",
-        "[+] Automated Container Deployment using Terraform, GitHub CI/CD, and Ansible.",
-        "[+] Forensic Investigation of Disk Images using FTK/Autopsy and Network Forensics using Wireshark.",
-        "[+] Designed secure, high-availability Network Architectures with VLAN segmentation and firewall redundancy."
+        "[+] Automated Container Deployment using Terraform and GitHub CI/CD.",
+        "[+] Forensic Investigation using FTK, Autopsy, and Wireshark."
       ],
     },
     {
       id: 2,
       degree: "B.Tech in Computer Science & Engineering",
-      school: "Sandip University, Nashik, Maharashtra, India",
+      school: "Sandip University, India",
       period: "Jun 2019 - Jun 2022",
-      details: "Key learnings: Programming, Web technologies, Servers Architecture, Linux fundamentals, Networking, and Operating Systems.",
+      details: "Key learnings: Programming, Web technologies, Servers, Linux, and Networking.",
     },
   ] as ExperienceItem[],
   certifications: [
@@ -182,20 +127,20 @@ const DATA = {
     "Red Hat Certified Engineer (RHCE)",
     "Cisco Certified Network Associate (CCNA)",
     "CompTIA A+ & N+",
-    "Fortinet NSE 3 Network Security Associate",
+    "Fortinet NSE 3 Associate",
   ],
   projects: [
     {
       title: "ML-Based C2 Detection",
       category: "AI Security",
-      desc: "Detecting Encrypted Havoc C2 Communication using Lightweight Machine Learning Models (SVM, XGBoost).",
-      tech: ["Python", "Machine Learning", "Wireshark", "Havoc C2"],
+      desc: "Detecting Encrypted Havoc C2 Communication using Machine Learning Models (SVM, XGBoost).",
+      tech: ["Python", "ML", "Wireshark", "Havoc C2"],
     },
     {
       title: "Secure Chat Application",
       category: "Development",
-      desc: "End-to-End Encrypted chat app implementing asymmetric cryptography and secure WebSockets.",
-      tech: ["Python", "Cryptography", "WebSockets", "SQLite"],
+      desc: "End-to-End Encrypted chat app implementing asymmetric cryptography and WebSockets.",
+      tech: ["Python", "Cryptography", "WebSockets"],
     },
     {
       title: "Automated Cloud Deployment",
@@ -205,22 +150,10 @@ const DATA = {
     },
   ] as Project[],
   tools: [
-    {
-      category: "Security Testing",
-      items: ["Nessus", "Metasploit Pro", "Burp Suite", "Nmap", "Wireshark"],
-    },
-    {
-      category: "SIEM & Monitoring",
-      items: ["IBM QRadar", "Secone", "Log Analysis", "Correlation Rules"],
-    },
-    {
-      category: "Red Team Tools",
-      items: ["Sliver", "Havoc C2", "BloodHound", "CrackMapExec", "Mimikatz"],
-    },
-    {
-      category: "Forensics",
-      items: ["Autopsy", "FTK", "Cuckoo Sandbox", "Volatility"],
-    },
+    { category: "Security Testing", items: ["Nessus", "Metasploit", "Burp Suite", "Nmap", "Wireshark"] },
+    { category: "SIEM & Monitoring", items: ["IBM QRadar", "Secone", "Log Analysis", "Correlation"] },
+    { category: "Red Team Tools", items: ["Sliver", "Havoc C2", "BloodHound", "Mimikatz"] },
+    { category: "Forensics", items: ["Autopsy", "FTK", "Cuckoo Sandbox", "Volatility"] },
   ] as ToolCategory[],
 }
 
@@ -228,49 +161,29 @@ const DATA = {
 
 const MatrixBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-
   useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return 
-
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
-
-    let width = window.innerWidth
-    let height = window.innerHeight
-    canvas.width = width
-    canvas.height = height
-
-    const alphabet = "01ABCDEFGHIJKLMNOPQRSTUVWXYZアカサタナハマヤラワ"
-    const fontSize = 16
-    const columns = width / fontSize
-    const rainDrops: number[] = Array(Math.floor(columns)).fill(1)
-
+    const canvas = canvasRef.current; if (!canvas) return;
+    const ctx = canvas.getContext("2d"); if (!ctx) return;
+    let width = window.innerWidth; let height = window.innerHeight;
+    canvas.width = width; canvas.height = height;
+    const alphabet = "01ABCDEFGHIJKLMNOPQRSTUVWXYZアカサタナハマヤラワ";
+    const fontSize = 16; const columns = width / fontSize;
+    const rainDrops: number[] = Array(Math.floor(columns)).fill(1);
     const draw = () => {
-      ctx.fillStyle = "rgba(10, 10, 10, 0.05)"
-      ctx.fillRect(0, 0, width, height)
-      ctx.fillStyle = "#0F0"
-      ctx.font = fontSize + "px monospace"
-
+      ctx.fillStyle = "rgba(10, 10, 10, 0.05)"; ctx.fillRect(0, 0, width, height);
+      ctx.fillStyle = "#0F0"; ctx.font = fontSize + "px monospace";
       for (let i = 0; i < rainDrops.length; i++) {
-        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length))
-        ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize)
-        if (rainDrops[i] * fontSize > height && Math.random() > 0.975) {
-          rainDrops[i] = 0
-        }
-        rainDrops[i]++
+        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+        ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+        if (rainDrops[i] * fontSize > height && Math.random() > 0.975) rainDrops[i] = 0;
+        rainDrops[i]++;
       }
-    }
-
-    const interval = setInterval(draw, 30)
-    const handleResize = () => {
-      width = window.innerWidth; height = window.innerHeight
-      canvas.width = width; canvas.height = height
-    }
-    window.addEventListener("resize", handleResize)
-    return () => { clearInterval(interval); window.removeEventListener("resize", handleResize) }
+    };
+    const interval = setInterval(draw, 30);
+    const handleResize = () => { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; };
+    window.addEventListener("resize", handleResize);
+    return () => { clearInterval(interval); window.removeEventListener("resize", handleResize); };
   }, [])
-
   return <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full -z-10 opacity-20 pointer-events-none" />
 }
 
@@ -281,45 +194,6 @@ const SectionHeading = ({ children, icon: Icon }: { children: React.ReactNode, i
     </div>
     <h2 className="text-3xl font-bold text-white tracking-wide uppercase font-mono">{children}</h2>
     <div className="h-px bg-green-500/30 flex-grow ml-4"></div>
-  </div>
-)
-
-const SkillCard = ({ title, skills, icon: Icon }: { title: string, skills: string[], icon: LucideIcon }) => (
-  <div className="bg-zinc-900/50 border border-green-500/20 p-6 rounded-lg backdrop-blur-sm hover:border-green-500/50 transition-all">
-    <div className="flex items-center gap-3 mb-4">
-      <Icon className="text-green-400" size={24} />
-      <h3 className="text-xl font-bold text-gray-100">{title}</h3>
-    </div>
-    <div className="flex flex-wrap gap-2">
-      {skills.map((skill, idx) => (
-        <span key={idx} className="px-3 py-1 text-sm bg-black/40 border border-zinc-700 text-zinc-300 rounded hover:text-green-400 transition-colors">
-          {skill}
-        </span>
-      ))}
-    </div>
-  </div>
-)
-
-const TimelineItem = ({ data, isLast = false }: { data: ExperienceItem, isLast?: boolean }) => (
-  <div className="relative pl-8 pb-12 sm:pl-32 py-6 group">
-    {!isLast && <div className="absolute left-8 sm:left-32 top-10 bottom-0 w-px bg-zinc-800 group-hover:bg-green-500/50" />}
-    <div className="hidden sm:block absolute left-0 w-24 text-right text-sm font-mono text-green-500/80 pt-1">{data.period}</div>
-    <div className="absolute left-[26px] sm:left-[122px] top-7 w-3 h-3 rounded-full bg-zinc-900 border-2 border-green-500 z-10" />
-    <div className="bg-zinc-900/40 border border-zinc-800 p-6 rounded-xl hover:border-green-500/30 transition-all">
-      <div className="sm:hidden text-xs font-mono text-green-500 mb-2">{data.period}</div>
-      <h3 className="text-xl font-bold text-white mb-1">{data.role || data.degree}</h3>
-      <div className="text-zinc-400 mb-4 font-medium">{data.company || data.school}</div>
-      {Array.isArray(data.details) ? (
-        <ul className="space-y-2">
-          {data.details.map((point, idx) => (
-            <li key={idx} className="flex items-start gap-2 text-sm text-zinc-400">
-              <span className="text-green-500 mt-1">▹</span>
-              <span>{point}</span>
-            </li>
-          ))}
-        </ul>
-      ) : <p className="text-sm text-zinc-400">{data.details}</p>}
-    </div>
   </div>
 )
 
@@ -355,7 +229,7 @@ export default function App() {
             <span>PARTH<span className="text-green-500">.SEC</span></span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-xs font-medium uppercase tracking-widest">
-            {["About", "Skills", "Experience", "Projects", "Tools", "Contact"].map(item => (
+            {["About", "Experience", "Projects", "Tools", "Contact"].map(item => (
               <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-green-400 transition-colors">{item}</a>
             ))}
           </div>
@@ -365,73 +239,118 @@ export default function App() {
 
       <section id="about" className="relative min-h-screen flex items-center justify-center px-6 pt-24">
         <div className="text-center max-w-4xl z-10">
-          <div className="inline-block px-3 py-1 mb-6 text-xs font-mono text-green-400 bg-green-900/20 border border-green-500/30 rounded-full">
-            System Online • Secure Connection Established
-          </div>
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-8">
             Hello, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">{DATA.profile.name}</span>
           </h1>
           <div className="mb-8 flex justify-center">
             <div className="relative w-32 h-32 md:w-40 md:h-40">
-              <img 
-                src="https://raw.githubusercontent.com/parthbhagat1337/parth-portfolio/main/Parth-bhagat-photo.JPG" 
-                alt="Parth" 
-                className="w-full h-full rounded-full object-cover border-4 border-green-500/50" 
-              />
+              <img src="https://raw.githubusercontent.com/parthbhagat1337/parth-portfolio/main/Parth-bhagat-photo.JPG" alt="Parth" className="w-full h-full rounded-full object-cover border-4 border-green-500/50" />
               <div className="absolute inset-0 rounded-full ring-2 ring-green-400/30 animate-pulse" />
             </div>
           </div>
           <div className="h-12 mb-8 font-mono text-xl md:text-3xl text-zinc-400">
             &gt; <span className="text-green-500">{typewriterText}</span><span className="animate-pulse">_</span>
           </div>
-          <p className="text-zinc-400 max-w-2xl mx-auto mb-10 text-lg">{DATA.profile.summary}</p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <a href={`mailto:${DATA.profile.email}`} className="px-6 py-3 bg-green-500 text-black font-bold rounded flex items-center gap-2 hover:bg-green-400 transition-all"><Mail size={18} /> Contact Me</a>
+          <p className="text-zinc-400 max-w-2xl mx-auto mb-10 text-lg leading-relaxed">{DATA.profile.summary}</p>
+          <div className="flex justify-center gap-4">
+            <a href={`mailto:${DATA.profile.email}`} className="px-6 py-3 bg-green-500 text-black font-bold rounded flex items-center gap-2 hover:bg-green-400 transition-all"><Mail size={18} /> Contact</a>
             <a href={DATA.profile.github} target="_blank" className="px-6 py-3 bg-zinc-800 text-white rounded flex items-center gap-2 hover:text-green-400 transition-all"><Github size={18} /> GitHub</a>
           </div>
         </div>
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"><ChevronDown className="text-green-500" /></div>
       </section>
 
       <main className="container mx-auto px-6 py-12 space-y-24">
-        <section id="skills" className="scroll-mt-24">
-          <SectionHeading icon={Cpu}>Technical Arsenal</SectionHeading>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <SkillCard title="Offensive Security" skills={DATA.skills.offensive} icon={Shield} />
-            <SkillCard title="Cloud Security" skills={DATA.skills.cloud} icon={Server} />
-            <SkillCard title="Defensive Ops" skills={DATA.skills.defensive} icon={Lock} />
-            <SkillCard title="Development" skills={DATA.skills.dev} icon={Code} />
-          </div>
-        </section>
-
         <section id="experience" className="scroll-mt-24">
           <SectionHeading icon={Briefcase}>Mission Timeline</SectionHeading>
-          <div className="max-w-4xl mx-auto">
-            {DATA.experience.map((job, idx) => <TimelineItem key={idx} data={job} />)}
-            <div className="my-12 flex items-center justify-center">
-              <div className="h-px bg-zinc-800 w-full max-w-xs" />
-              <span className="px-4 text-zinc-600 font-mono text-sm">ACADEMIC</span>
-              <div className="h-px bg-zinc-800 w-full max-w-xs" />
-            </div>
-            {DATA.education.map((edu, idx) => <TimelineItem key={idx+10} data={edu} isLast={idx === DATA.education.length - 1} />)}
+          <div className="max-w-4xl mx-auto space-y-8">
+            {DATA.experience.map((job) => (
+              <div key={job.id} className="bg-zinc-900/40 border border-zinc-800 p-6 rounded-xl">
+                <div className="text-green-500 font-mono text-sm mb-2">{job.period}</div>
+                <h3 className="text-xl font-bold text-white">{job.role}</h3>
+                <div className="text-zinc-400 mb-4">{job.company}</div>
+                <ul className="space-y-2">
+                  {(job.details as string[]).map((d, i) => (
+                    <li key={i} className="text-sm text-zinc-400 flex gap-2">
+                      <span className="text-green-500">▹</span>{d}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+            <div className="text-center text-zinc-600 font-mono text-sm py-4">ACADEMIC HISTORY</div>
+            {DATA.education.map((edu) => (
+              <div key={edu.id} className="bg-zinc-900/20 border border-zinc-800/50 p-6 rounded-xl">
+                <div className="text-zinc-500 font-mono text-sm mb-2">{edu.period}</div>
+                <h3 className="text-lg font-bold text-white">{edu.degree}</h3>
+                <div className="text-zinc-500 mb-4">{edu.school}</div>
+                {Array.isArray(edu.details) && (
+                  <ul className="space-y-1">
+                    {edu.details.map((d, i) => <li key={i} className="text-xs text-zinc-500 flex gap-2"><span>+</span>{d}</li>)}
+                  </ul>
+                )}
+              </div>
+            ))}
           </div>
         </section>
 
-        <section id="contact" className="scroll-mt-24 max-w-3xl mx-auto text-center">
-          <SectionHeading icon={Globe}>Establish Uplink</SectionHeading>
-          <div className="flex flex-wrap justify-center gap-6 mt-10">
-            <a href={`mailto:${DATA.profile.email}`} className="p-4 bg-zinc-900 border border-zinc-800 rounded-xl hover:border-green-500 transition-all">
-               <Mail className="mx-auto mb-2" /> {DATA.profile.email}
-            </a>
-            <a href={DATA.profile.linkedin} target="_blank" className="p-4 bg-zinc-900 border border-zinc-800 rounded-xl hover:border-blue-500 transition-all">
-               <Linkedin className="mx-auto mb-2" /> LinkedIn Profile
-            </a>
+        <section id="certifications" className="scroll-mt-24">
+          <SectionHeading icon={Award}>Certifications</SectionHeading>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {DATA.certifications.map((cert, i) => (
+              <div key={i} className="flex items-center gap-3 p-4 bg-zinc-900/50 border border-zinc-800 rounded">
+                <div className="w-2 h-2 rounded-full bg-green-500" />
+                <span className="text-sm text-zinc-300">{cert}</span>
+              </div>
+            ))}
           </div>
-          <footer className="mt-20 pt-8 border-t border-zinc-900 text-zinc-600 text-sm font-mono">
-            <p>© {new Date().getFullYear()} Parth Bhagat. All systems nominal.</p>
-          </footer>
+        </section>
+
+        <section id="projects" className="scroll-mt-24">
+          <SectionHeading icon={Database}>Classified Projects</SectionHeading>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {DATA.projects.map((p, i) => (
+              <div key={i} className="bg-zinc-900 border border-zinc-800 p-6 rounded-xl hover:border-green-500/50 transition-all">
+                <div className="text-xs font-mono text-green-500 mb-2">{p.category}</div>
+                <h3 className="text-xl font-bold text-white mb-3">{p.title}</h3>
+                <p className="text-zinc-400 text-sm mb-4">{p.desc}</p>
+                <div className="flex flex-wrap gap-2">
+                  {p.tech.map((t, j) => <span key={j} className="text-xs text-zinc-500">#{t}</span>)}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="tools" className="scroll-mt-24">
+          <SectionHeading icon={Terminal}>Tools & Arsenal</SectionHeading>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {DATA.tools.map((tg, i) => (
+              <div key={i} className="bg-zinc-900/50 border border-green-500/20 p-6 rounded-lg">
+                <h3 className="text-lg font-bold text-green-400 mb-4 font-mono">{tg.category}</h3>
+                <div className="flex flex-wrap gap-2">
+                  {tg.items.map((item, j) => <span key={j} className="px-2 py-1 bg-black text-xs text-zinc-300 rounded border border-zinc-800">{item}</span>)}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="contact" className="text-center py-12">
+          <SectionHeading icon={Globe}>Establish Uplink</SectionHeading>
+          <div className="flex justify-center gap-6 mt-8">
+            <a href={DATA.profile.linkedin} target="_blank" className="hover:text-blue-500 transition-colors"><Linkedin size={32} /></a>
+            <a href={`mailto:${DATA.profile.email}`} className="hover:text-green-500 transition-colors"><Mail size={32} /></a>
+            <a href={DATA.profile.github} target="_blank" className="hover:text-gray-400 transition-colors"><Github size={32} /></a>
+          </div>
+          <p className="mt-12 text-zinc-600 font-mono text-sm">© {new Date().getFullYear()} Parth Bhagat. All systems nominal.</p>
         </section>
       </main>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+      `}} />
     </div>
   )
 }
