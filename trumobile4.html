@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TruMobile — Premium Smartphones</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* LIGHT MODE THEME */
+  --bg: #FAFAFA;
+  --bg2: #FFFFFF;
+  --bg3: #F3F4F6;
+  --card: #FFFFFF;
+  --glass: rgba(255, 255, 255, 0.85);
+  
+  /* BRAND COLORS */
+  --cyan: #0066FF; /* Primary Tech Blue */
+  --cyan2: #0052CC; /* Darker Hover Blue */
+  --violet: #6C3FF5;
+  
+  /* TYPOGRAPHY */
+  --text: #111827; /* Dark Gray / Black */
+  --text2: #374151; /* Medium Gray */
+  --text3: #6B7280; /* Light Gray */
+  
+  /* UI ELEMENTS */
+  --border: #E5E7EB;
+  --border2: rgba(0, 102, 255, 0.3);
+  --green: #059669;
+  --red: #DC2626;
+  --orange: #EA580C;
+  --r: 10px;
+  
+  /* SHADOWS */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+img{display:block;max-width:100%}
+button{cursor:pointer;font-family:'Inter',sans-serif}
+a{text-decoration:none;color:inherit}
+
+/* GRID BG - LIGHT MODE */
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,102,255,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,102,255,0.05) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
+
+/* CANVAS */
+#pcv{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.3}
+
+.page{position:relative;z-index:1}
+
+/* ─── HEADER ─── */
+header{
+  position:sticky;top:0;z-index:200;
+  background:rgba(255, 255, 255, 0.92);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.header-inner{
+  max-width:1400px;margin:0 auto;
+  padding:0 1.5rem;height:65px;
+  display:flex;align-items:center;gap:1rem;
+}
+.logo{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;
+  color:var(--cyan);letter-spacing:-0.02em;white-space:nowrap;flex-shrink:0;cursor:pointer;
+}
+.logo em{color:var(--text);font-style:normal}
+.search-box{
+  flex:1;max-width:520px;position:relative;
+}
+.search-box input{
+  width:100%;background:var(--bg3);border:1px solid transparent;border-radius:8px;
+  padding:10px 14px 10px 38px;color:var(--text);font-size:0.875rem;outline:none;
+  transition:all 0.2s;
+}
+.search-box input:focus{background:var(--bg2);border-color:var(--cyan2);box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);}
+.search-box input::placeholder{color:var(--text3)}
+.s-ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:16px;pointer-events:none}
+.sugg{
+  display:none;position:absolute;top:calc(100% + 6px);left:0;right:0;
+  background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;z-index:300;
+  box-shadow: var(--shadow-lg);
+}
+.sugg.show{display:block}
+.sugg-item{
+  display:flex;align-items:center;gap:10px;padding:10px 14px;
+  font-size:0.825rem;color:var(--text2);cursor:pointer;transition:background 0.15s,color 0.15s;
+  border-bottom: 1px solid var(--border);
+}
+.sugg-item:last-child{border-bottom:none;}
+.sugg-item:hover{background:rgba(0,102,255,0.06);color:var(--cyan)}
+.sugg-item img{width:32px;height:40px;object-fit:cover;border-radius:4px;background:var(--bg3)}
+.hdr-actions{display:flex;align-items:center;gap:8px;margin-left:auto;flex-shrink:0}
+.hdr-btn{
+  background:none;border:none;color:var(--text2);
+  display:flex;align-items:center;gap:6px;
+  font-size:0.85rem;font-weight:500;padding:8px 12px;border-radius:7px;
+  transition:all 0.2s;position:relative;white-space:nowrap;
+}
+.hdr-btn:hover{color:var(--cyan);background:rgba(0,102,255,0.07)}
+.hdr-badge{
+  position:absolute;top:-4px;right:-4px;
+  background:var(--red);color:#FFF;
+  border-radius:50%;width:18px;height:18px;
+  font-size:10px;font-weight:700;
+  display:none;align-items:center;justify-content:center;
+}
+.signin-btn{
+  background:var(--cyan);color:#FFF;
+  border:none;padding:8px 20px;border-radius:7px;
+  font-size:0.85rem;font-weight:600;transition:all 0.2s;
+  box-shadow: var(--shadow-sm);
+}
+.signin-btn:hover{background:var(--cyan2);transform:translateY(-1px);box-shadow: var(--shadow-md);}
+
+/* SUBNAV */
+.subnav{
+  background:var(--bg2);
+  border-bottom:1px solid var(--border);
+  padding:0 1.5rem;
+  display:flex;gap:0;overflow-x:auto;scrollbar-width:none;
+  max-width:100%;
+}
+.subnav::-webkit-scrollbar{display:none}
+.subnav-inner{display:flex;gap:0;max-width:1400px;margin:0 auto;width:100%}
+.snav-link{
+  color:var(--text2);font-size:0.8rem;font-weight:500;
+  padding:12px 18px;border-bottom:2px solid transparent;
+  white-space:nowrap;transition:all 0.2s;cursor:pointer;
+}
+.snav-link:hover,.snav-link.active{color:var(--cyan);border-bottom-color:var(--cyan)}
+
+/* SECTIONS */
+.section{display:none; animation: fadeIn 0.4s ease;}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.section.active{display:block}
+#sec-pdp.active{display:flex;flex-direction:column}
+
+/* ─── HOME ─── */
+.home-wrap{max-width:1400px;margin:0 auto;padding:0 1.5rem}
+
+/* HERO BANNER - LIGHT MODE */
+.hero-banner{
+  margin:1.5rem 0;border-radius:20px;overflow:hidden;
+  background:linear-gradient(135deg, #F0F5FF 0%, #E6EFFF 50%, #F5F8FF 100%);
+  border:1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  display:grid;grid-template-columns:1fr 450px;min-height:420px;
+}
+.hero-text{padding:4rem 3.5rem;display:flex;flex-direction:column;justify-content:center}
+.hero-label{
+  font-size:0.75rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:14px;
+  display:flex;align-items:center;gap:8px;
+}
+.hero-label::before{content:'';width:28px;height:2px;background:var(--cyan)}
+.hero-title{
+  font-family:'Syne',sans-serif;font-size:clamp(2.5rem, 4vw, 3.8rem);
+  font-weight:800;line-height:1.05;letter-spacing:-0.03em;
+  color:var(--text);margin-bottom:18px;
+}
+.hero-title span{color:var(--cyan)}
+.hero-sub{font-size:1.05rem;color:var(--text2);line-height:1.6;margin-bottom:2.5rem;max-width:480px}
+.hero-meta{display:flex;align-items:center;gap:2rem;margin-bottom:2.5rem}
+.hero-price-label{font-size:0.8rem;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px}
+.hero-price{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--text)}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-buy-now{
+  background:var(--cyan);color:#FFF;border:none;
+  padding:14px 32px;border-radius:10px;font-size:0.95rem;font-weight:600;
+  transition:all 0.2s;box-shadow: var(--shadow-md);
+}
+.btn-buy-now:hover{background:var(--cyan2);transform:translateY(-2px);box-shadow: var(--shadow-lg)}
+.btn-add-cart{
+  background:var(--bg2);border:1px solid var(--border);color:var(--text);
+  padding:14px 32px;border-radius:10px;font-size:0.95rem;font-weight:600;
+  transition:all 0.2s;
+}
+.btn-add-cart:hover{background:var(--bg3);border-color:var(--text3)}
+.hero-img{
+  display:flex;align-items:center;justify-content:center;
+  padding:2rem;position:relative;overflow:hidden;
+}
+.hero-img::before{
+  content:'';position:absolute;
+  width:350px;height:350px;
+  background:radial-gradient(circle, rgba(0,102,255,0.15) 0%, transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+}
+.hero-phone-img{
+  height:340px;width:auto;object-fit:contain;
+  filter:drop-shadow(0 25px 40px rgba(0,0,0,0.15));
+  animation:floatY 5s ease-in-out infinite;
+  position:relative;z-index:1;
+}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+/* CATEGORY STRIP */
+.cat-strip{display:flex;gap:12px;margin-bottom:2.5rem;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+.cat-strip::-webkit-scrollbar{display:none}
+.cat-pill{
+  background:var(--bg2);border:1px solid var(--border);border-radius:24px;
+  padding:10px 20px;font-size:0.85rem;font-weight:600;color:var(--text2);
+  white-space:nowrap;cursor:pointer;transition:all 0.2s;flex-shrink:0;
+  box-shadow: var(--shadow-sm);
+}
+.cat-pill:hover,.cat-pill.active{background:var(--cyan);border-color:var(--cyan);color:#FFF;box-shadow: var(--shadow-md);}
+
+/* SECTION HEADING */
+.sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem}
+.sec-head h2{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;letter-spacing:-0.02em}
+.sec-head h2 span{color:var(--cyan)}
+.sec-head a{font-size:0.9rem;font-weight:600;color:var(--cyan);cursor:pointer;transition:color 0.2s}
+.sec-head a:hover{color:var(--cyan2)}
+
+/* PHONE GRID */
+.phone-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem;margin-bottom:4rem}
+.phone-card{
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
+  overflow:hidden;cursor:pointer;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position:relative;box-shadow: var(--shadow-md);
+}
+.phone-card:hover{border-color:var(--cyan);transform:translateY(-6px);box-shadow: var(--shadow-hover);}
+.pc-img{
+  width:100%;height:220px;background:var(--bg3);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  position:relative;
+}
+.pc-img img{height:180px;width:auto;object-fit:contain;transition:transform 0.5s ease;filter:drop-shadow(0 10px 15px rgba(0,0,0,0.08));}
+.phone-card:hover .pc-img img{transform:scale(1.08)}
+.pc-wish{
+  position:absolute;top:12px;right:12px;
+  background:rgba(255,255,255,0.9);border:1px solid var(--border);border-radius:50%;
+  width:36px;height:36px;display:flex;align-items:center;justify-content:center;
+  color:var(--text3);font-size:16px;transition:all 0.2s;z-index:2;box-shadow: var(--shadow-sm);
+}
+.pc-wish:hover,.pc-wish.active{background:var(--red);border-color:var(--red);color:#FFF;}
+.pc-badge{
+  position:absolute;top:12px;left:12px;
+  font-size:0.65rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+  padding:5px 10px;border-radius:6px;z-index:2;box-shadow: var(--shadow-sm);
+}
+.badge-new{background:#D1FAE5;color:#065F46;border:1px solid #A7F3D0}
+.badge-hot{background:#FFEDD5;color:#9A3412;border:1px solid #FED7AA}
+.badge-gaming{background:#FEE2E2;color:#991B1B;border:1px solid #FECACA}
+.pc-body{padding:18px}
+.pc-brand{font-size:0.75rem;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px}
+.pc-name{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.3}
+.pc-spec{font-size:0.8rem;color:var(--text2);margin-bottom:14px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.pc-row{display:flex;align-items:center;justify-content:space-between}
+.pc-price{font-size:1.15rem;font-weight:800;color:var(--text)}
+.pc-price small{font-size:0.75rem;font-weight:500;color:var(--text3);display:block;margin-top:2px;text-decoration:line-through;}
+.pc-stars{display:flex;align-items:center;gap:4px;font-size:0.8rem;font-weight:600;color:var(--text2)}
+.pc-stars .star{color:#F5B50A;font-size:0.9rem}
+.pc-quick{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--border);background:var(--bg);
+}
+.pc-quick button{
+  background:none;border:none;padding:12px 6px;font-size:0.85rem;font-weight:600;
+  color:var(--text2);transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.pc-quick button:first-child{border-right:1px solid var(--border)}
+.pc-quick button:hover{background:var(--bg3);color:var(--cyan)}
+
+/* ─── PDP ─── */
+#sec-pdp{min-height:100vh}
+.pdp-back-bar{
+  background:var(--bg2);border-bottom:1px solid var(--border);
+  padding:12px 1.5rem;display:flex;align-items:center;gap:12px;
+  font-size:0.85rem;font-weight:500;color:var(--text3);
+}
+.pdp-back-bar button{
+  background:none;border:none;color:var(--text2);font-weight:600;font-size:0.85rem;
+  display:flex;align-items:center;gap:6px;padding:0;transition:color 0.2s;
+}
+.pdp-back-bar button:hover{color:var(--cyan)}
+.pdp-wrap{max-width:1300px;margin:0 auto;padding:2.5rem 1.5rem 4rem;display:grid;grid-template-columns:1fr 480px;gap:4rem}
+
+/* LEFT: MEDIA */
+.pdp-main-img{
+  background:var(--bg2);border:1px solid var(--border);border-radius:20px;
+  height:500px;display:flex;align-items:center;justify-content:center;
+  overflow:hidden;margin-bottom:16px;position:relative;box-shadow: var(--shadow-md);
+}
+.pdp-main-img img{height:420px;width:auto;object-fit:contain;transition:transform 0.4s ease-out;filter:drop-shadow(0 20px 30px rgba(0,0,0,0.1));}
+.pdp-main-img img:hover{transform:scale(1.06)}
+.pdp-main-img .zoom-hint{
+  position:absolute;bottom:16px;right:16px;
+  background:rgba(255,255,255,0.9);border:1px solid var(--border);border-radius:8px;
+  padding:6px 12px;font-size:0.75rem;font-weight:600;color:var(--text2);box-shadow:var(--shadow-sm);
+}
+.pdp-thumbs{display:flex;gap:12px;justify-content:center;}
+.pdp-thumb{
+  width:80px;height:90px;background:var(--bg2);border:2px solid var(--border);border-radius:12px;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;transition:all 0.2s;flex-shrink:0;
+}
+.pdp-thumb img{height:60px;width:auto;object-fit:contain}
+.pdp-thumb:hover{border-color:var(--text3)}
+.pdp-thumb.active{border-color:var(--cyan);box-shadow: 0 0 0 2px rgba(0,102,255,0.2)}
+
+/* RIGHT: INFO */
+.pdp-brand{font-size:0.8rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.pdp-name{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;line-height:1.15;letter-spacing:-0.03em;margin-bottom:12px;color:var(--text)}
+.pdp-rating-row{display:flex;align-items:center;gap:12px;margin-bottom:20px;font-size:0.9rem;font-weight:500}
+.pdp-stars{color:#F5B50A;letter-spacing:1px;font-size:1rem}
+.pdp-rating-count{color:var(--text2)}
+.pdp-rating-count a{color:var(--cyan);cursor:pointer;font-weight:600}
+.pdp-price-block{
+  background:var(--bg2);border:1px solid var(--border);border-radius:16px;
+  padding:20px;margin-bottom:24px;box-shadow: var(--shadow-sm);
+}
+.pdp-price{font-size:2.2rem;font-weight:800;color:var(--text);margin-bottom:6px;font-family:'Syne',sans-serif}
+.pdp-price-detail{display:flex;align-items:center;gap:12px;font-size:0.9rem}
+.pdp-price-detail .mrp{color:var(--text3);text-decoration:line-through;font-weight:500}
+.pdp-price-detail .saving{color:var(--green);font-weight:700;background:#D1FAE5;padding:2px 8px;border-radius:4px;font-size:0.8rem}
+.pdp-tax{font-size:0.8rem;color:var(--text3);margin-top:10px;font-weight:500}
+.pdp-delivery{
+  display:flex;align-items:center;gap:12px;margin-bottom:24px;
+  background:#F0FDF4;border:1px solid #BBF7D0;
+  border-radius:12px;padding:14px 18px;font-size:0.85rem;color:#166534;font-weight:500;
+}
+.pdp-delivery .icon{font-size:1.4rem}
+
+/* VARIANTS */
+.pdp-label{font-size:0.85rem;font-weight:700;color:var(--text);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;margin-top:20px}
+.storage-options{display:grid;grid-template-columns:repeat(auto-fit, minmax(100px, 1fr));gap:10px}
+.stor-btn{
+  background:var(--bg2);border:2px solid var(--border);border-radius:10px;
+  padding:12px 10px;font-size:0.9rem;font-weight:600;color:var(--text2);transition:all 0.2s;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+}
+.stor-btn span{font-size:0.75rem;font-weight:500;color:var(--text3)}
+.stor-btn:hover{border-color:var(--cyan);background:var(--bg)}
+.stor-btn.active{border-color:var(--cyan);color:var(--cyan);background:rgba(0,102,255,0.05);box-shadow:var(--shadow-sm)}
+.stor-btn.active span{color:var(--cyan2)}
+
+.color-options{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.color-dot{
+  width:32px;height:32px;border-radius:50%;cursor:pointer;
+  border:2px solid #FFF;transition:all 0.2s;position:relative;box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.color-dot.active::after{
+  content:'';position:absolute;inset:-6px;border-radius:50%;
+  border:2px solid var(--cyan);
+}
+
+/* ACTION BUTTONS */
+.pdp-actions{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+.btn-cart-full{
+  background:var(--bg2);border:2px solid var(--cyan);color:var(--cyan);
+  padding:16px;border-radius:12px;font-size:1rem;font-weight:700;
+  transition:all 0.2s;box-shadow: var(--shadow-sm);
+}
+.btn-cart-full:hover{background:var(--cyan);color:#FFF;transform:translateY(-2px);box-shadow: var(--shadow-md);}
+.btn-buynow-full{
+  background:var(--cyan);border:none;color:#FFF;
+  padding:16px;border-radius:12px;font-size:1rem;font-weight:700;
+  transition:all 0.2s;box-shadow: var(--shadow-md);
+}
+.btn-buynow-full:hover{background:var(--cyan2);transform:translateY(-2px);box-shadow: var(--shadow-lg);}
+
+/* TRUST BADGES */
+.trust-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+.trust-badge{
+  background:var(--bg2);border:1px solid var(--border);border-radius:12px;
+  padding:14px 10px;text-align:center;font-size:0.75rem;font-weight:500;color:var(--text3);
+}
+.trust-badge .t-icon{font-size:1.5rem;margin-bottom:6px}
+.trust-badge strong{display:block;color:var(--text);font-size:0.85rem;font-weight:700;margin-bottom:4px}
+
+/* SPECS TABS */
+.pdp-tabs-section{max-width:1300px;margin:0 auto;padding:0 1.5rem 5rem; width:100%}
+.tabs-nav{display:flex;border-bottom:1px solid var(--border);margin-bottom:2.5rem;overflow-x:auto;scrollbar-width:none}
+.tabs-nav::-webkit-scrollbar{display:none}
+.tab-btn{
+  background:none;border:none;padding:16px 24px;font-size:0.95rem;font-weight:600;
+  color:var(--text3);border-bottom:3px solid transparent;white-space:nowrap;transition:all 0.2s;
+}
+.tab-btn.active,.tab-btn:hover{color:var(--cyan);border-bottom-color:var(--cyan)}
+.tab-pane{display:none; animation: fadeIn 0.4s ease;}
+.tab-pane.active{display:block}
+
+/* SPECS TABLE */
+.specs-group{margin-bottom:2.5rem; background:var(--bg2); border:1px solid var(--border); border-radius:16px; padding:20px; box-shadow:var(--shadow-sm)}
+.specs-group-title{font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--cyan);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.spec-row{display:flex;padding:12px 0;border-bottom:1px solid var(--border);font-size:0.9rem}
+.spec-row:last-child{border-bottom:none;padding-bottom:0}
+.spec-key{width:180px;color:var(--text2);font-weight:600;flex-shrink:0}
+.spec-val{color:var(--text);line-height:1.6}
+
+/* RATINGS */
+.rating-summary-grid{display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:start;margin-bottom:3rem}
+.rating-big-block{text-align:center;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:2.5rem 3.5rem;box-shadow:var(--shadow-md)}
+.rating-number{font-family:'Syne',sans-serif;font-size:4.5rem;font-weight:800;color:var(--text);line-height:1}
+.rating-stars-big{font-size:1.6rem;color:#F5B50A;margin:10px 0}
+.rating-count-label{font-size:0.9rem;font-weight:500;color:var(--text3)}
+.bars-wrap{display:flex;flex-direction:column;gap:12px;padding-top:1rem}
+.bar-row{display:flex;align-items:center;gap:16px;font-size:0.9rem;font-weight:500}
+.bar-label{color:var(--text2);width:30px;flex-shrink:0}
+.bar-track{flex:1;height:8px;background:var(--bg3);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;background:var(--cyan);transition:width 0.8s ease}
+.bar-pct{color:var(--text3);width:40px;text-align:right;flex-shrink:0}
+.attr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;margin-top:2rem}
+.attr-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;box-shadow:var(--shadow-sm)}
+.attr-score{font-size:1.5rem;font-weight:800;color:var(--cyan);margin-bottom:6px}
+.attr-name{font-size:0.8rem;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.05em}
+
+/* CART MODAL */
+.cart-overlay{position:fixed;inset:0;background:rgba(17, 24, 39, 0.4);backdrop-filter:blur(4px);z-index:500;display:none;align-items:stretch;justify-content:flex-end}
+.cart-overlay.open{display:flex}
+.cart-panel{width:min(450px,100vw);background:var(--bg2);border-left:1px solid var(--border);display:flex;flex-direction:column;animation:slideRight 0.3s cubic-bezier(0.16,1,0.3,1);box-shadow: -10px 0 30px rgba(0,0,0,0.1)}
+@keyframes slideRight{from{transform:translateX(100%)}to{transform:translateX(0)}}
+.cart-hdr{padding:1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--bg)}
+.cart-hdr h3{font-size:1.2rem;font-weight:700;color:var(--text)}
+.cart-close-btn{background:var(--bg3);border:none;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:1.2rem;transition:all 0.2s}
+.cart-close-btn:hover{background:#E5E7EB;color:var(--text)}
+.cart-body{flex:1;overflow-y:auto;padding:1.5rem}
+.cart-empty{text-align:center;padding:4rem 0;color:var(--text3);font-size:1rem;font-weight:500}
+.cart-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--border);align-items:flex-start}
+.cart-item:first-child{padding-top:0}
+.ci-img{width:70px;height:84px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.ci-img img{height:65px;width:auto;object-fit:contain}
+.ci-info{flex:1}
+.ci-brand{font-size:0.75rem;font-weight:600;color:var(--text3);text-transform:uppercase;margin-bottom:4px}
+.ci-name{font-size:0.95rem;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.3}
+.ci-price{font-size:1.05rem;font-weight:800;color:var(--cyan)}
+.ci-storage{font-size:0.8rem;font-weight:500;color:var(--text2);margin-top:6px;background:var(--bg);padding:2px 8px;border-radius:4px;display:inline-block}
+.ci-remove{background:none;border:none;color:var(--text3);font-size:14px;padding:6px;transition:color 0.2s;flex-shrink:0}
+.ci-remove:hover{color:var(--red)}
+.cart-ftr{padding:1.5rem;border-top:1px solid var(--border);background:var(--bg)}
+.pb-row{display:flex;justify-content:space-between;font-size:0.9rem;font-weight:500;color:var(--text2);margin-bottom:10px}
+.pb-row.total{font-size:1.2rem;font-weight:800;color:var(--text);border-top:1px solid var(--border);padding-top:12px;margin-top:8px}
+.btn-checkout{width:100%;background:var(--cyan);border:none;color:#FFF;padding:16px;border-radius:12px;font-size:1rem;font-weight:700;margin-top:16px;transition:all 0.2s;box-shadow:var(--shadow-md)}
+.btn-checkout:hover{background:var(--cyan2);transform:translateY(-2px)}
+
+/* AUTH MODAL */
+.modal-wrap{position:fixed;inset:0;background:rgba(17, 24, 39, 0.6);backdrop-filter:blur(6px);z-index:600;display:none;align-items:center;justify-content:center}
+.modal-wrap.open{display:flex}
+.modal-box{background:var(--bg2);border:1px solid var(--border);border-radius:24px;padding:3rem 2.5rem;width:min(440px,90vw);position:relative;animation:popUp 0.3s cubic-bezier(0.34,1.56,0.64,1);box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25)}
+@keyframes popUp{from{opacity:0;transform:scale(0.95) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-close{position:absolute;top:20px;right:20px;background:var(--bg3);border:none;border-radius:50%;width:36px;height:36px;color:var(--text2);font-size:1.2rem;transition:all 0.2s}
+.modal-close:hover{background:#E5E7EB;color:var(--text)}
+.modal-title{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;text-align:center;margin-bottom:10px;color:var(--text)}
+.modal-sub{font-size:0.95rem;font-weight:500;color:var(--text2);text-align:center;margin-bottom:2rem;line-height:1.5}
+.ph-wrap{display:flex;border:2px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px;transition:border-color 0.2s;background:var(--bg2)}
+.ph-wrap:focus-within{border-color:var(--cyan);box-shadow: 0 0 0 4px rgba(0,102,255,0.1)}
+.cc-sel{background:var(--bg3);border:none;border-right:1px solid var(--border);color:var(--text);padding:14px 12px;font-size:0.95rem;font-weight:600;flex-shrink:0;outline:none}
+.ph-input{flex:1;background:transparent;border:none;color:var(--text);padding:14px 16px;font-size:1rem;font-weight:600;outline:none}
+.ph-input::placeholder{color:var(--text3);font-weight:500}
+.otp-btn{width:100%;background:var(--cyan);color:#FFF;border:none;padding:16px;border-radius:12px;font-size:1rem;font-weight:700;margin-bottom:16px;transition:all 0.2s;box-shadow:var(--shadow-md)}
+.otp-btn:hover{background:var(--cyan2);transform:translateY(-1px)}
+.modal-disclaimer{font-size:0.75rem;font-weight:500;color:var(--text3);text-align:center}
+.otp-step{display:none}
+.otp-step.show{display:block}
+.otp-row{display:flex;gap:10px;justify-content:center;margin-bottom:1.5rem}
+.otp-cell{width:48px;height:56px;background:var(--bg2);border:2px solid var(--border);border-radius:10px;text-align:center;font-size:1.5rem;font-weight:800;color:var(--text);outline:none;transition:all 0.2s}
+.otp-cell:focus{border-color:var(--cyan);box-shadow: 0 0 0 4px rgba(0,102,255,0.1)}
+.otp-footer{display:flex;justify-content:space-between;align-items:center;font-size:0.85rem;font-weight:500;color:var(--text2);margin-bottom:1.5rem}
+.otp-footer a{color:var(--cyan);font-weight:600}
+
+/* TRACKING */
+.track-page{max-width:800px;margin:0 auto;padding:3rem 1.5rem 5rem}
+.track-order-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:2.5rem;display:flex;gap:1.5rem;align-items:center;box-shadow:var(--shadow-sm)}
+.toc-img{width:80px;height:100px;background:var(--bg3);border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
+.toc-img img{height:80px;width:auto;object-fit:contain}
+.toc-info{flex:1}
+.toc-name{font-weight:700;font-size:1.1rem;margin-bottom:6px;color:var(--text)}
+.toc-price{font-size:1.1rem;color:var(--cyan);font-weight:800;margin-bottom:8px}
+.toc-meta{font-size:0.85rem;font-weight:500;color:var(--text2)}
+.toc-status-tag{padding:8px 16px;border-radius:24px;font-size:0.85rem;font-weight:700;flex-shrink:0}
+.status-transit{background:#EFF6FF;color:var(--cyan);border:1px solid #BFDBFE}
+.status-delivered{background:#F0FDF4;color:var(--green);border:1px solid #BBF7D0}
+.track-timeline{position:relative;padding-left:48px}
+.track-timeline::before{content:'';position:absolute;left:19px;top:16px;bottom:16px;width:2px;background:var(--border)}
+.t-node{position:relative;margin-bottom:3rem}
+.t-node:last-child{margin-bottom:0}
+.t-dot{position:absolute;left:-39px;top:4px;width:24px;height:24px;border-radius:50%;border:3px solid var(--border);background:var(--bg2);display:flex;align-items:center;justify-content:center;z-index:1;transition:all 0.4s}
+.t-dot.done{border-color:var(--green);background:var(--green)}
+.t-dot.done::after{content:'✓';font-size:12px;font-weight:bold;color:#FFF}
+.t-dot.active{border-color:var(--cyan);background:#FFF;animation:puls 1.8s ease-in-out infinite}
+.t-dot.active::after{content:'';width:10px;height:10px;border-radius:50%;background:var(--cyan)}
+@keyframes puls{0%,100%{box-shadow:0 0 0 0 rgba(0,102,255,0.3)}50%{box-shadow:0 0 0 10px rgba(0,102,255,0)}}
+.t-date{font-size:0.75rem;font-weight:700;color:var(--text3);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.08em}
+.t-title{font-weight:700;font-size:1.05rem;margin-bottom:8px;color:var(--text)}
+.t-title.active-txt{color:var(--cyan)}
+.t-desc{font-size:0.9rem;font-weight:500;color:var(--text2);line-height:1.6}
+
+/* CHECKOUT */
+.checkout-page{max-width:1200px;margin:0 auto;padding:3rem 1.5rem 5rem}
+.checkout-grid{display:grid;grid-template-columns:1fr 420px;gap:2.5rem;align-items:start}
+.form-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:2rem;margin-bottom:1.5rem;box-shadow:var(--shadow-sm)}
+.form-card-title{font-size:1rem;font-weight:700;color:var(--text);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:1.5rem;display:flex;align-items:center;gap:12px}
+.form-card-title .step-num{background:var(--cyan);color:#FFF;width:28px;height:28px;border-radius:50%;font-size:0.9rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--shadow-sm)}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.form-row-1{margin-bottom:16px}
+.f-group{display:flex;flex-direction:column;gap:8px}
+.f-group label{font-size:0.75rem;color:var(--text2);font-weight:700;text-transform:uppercase;letter-spacing:0.05em}
+.f-group input,.f-group select{background:var(--bg2);border:2px solid var(--border);border-radius:10px;padding:12px 16px;color:var(--text);font-size:0.95rem;font-weight:500;outline:none;transition:all 0.2s;font-family:'Inter',sans-serif}
+.f-group input:focus,.f-group select:focus{border-color:var(--cyan);box-shadow: 0 0 0 4px rgba(0,102,255,0.1)}
+.f-group input::placeholder{color:var(--text3);font-weight:400}
+.pay-opts{display:flex;flex-direction:column;gap:12px}
+.pay-opt{display:flex;align-items:center;gap:12px;border:2px solid var(--border);border-radius:12px;padding:16px;cursor:pointer;transition:all 0.2s;font-size:0.95rem;font-weight:600;color:var(--text)}
+.pay-opt:hover{border-color:var(--text3);background:var(--bg)}
+.pay-opt.sel{border-color:var(--cyan);background:rgba(0,102,255,0.05);box-shadow:var(--shadow-sm)}
+.pay-opt input{accent-color:var(--cyan);width:18px;height:18px}
+.pay-opt-label{flex:1}
+.pay-opt-icon{font-size:1.4rem}
+
+.order-summ-box{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:2rem;position:sticky;top:90px;box-shadow:var(--shadow-md)}
+.osb-title{font-size:1.1rem;font-weight:800;margin-bottom:1.5rem;color:var(--text)}
+.osb-item{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.osb-img{width:60px;height:72px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.osb-img img{height:56px;width:auto;object-fit:contain}
+.osb-name{flex:1;font-size:0.9rem;font-weight:700;line-height:1.4;color:var(--text)}
+.osb-price{font-size:1rem;font-weight:800;color:var(--text);flex-shrink:0}
+.osb-div{border-top:1px solid var(--border);margin:20px 0}
+.osb-row{display:flex;justify-content:space-between;font-size:0.95rem;font-weight:500;color:var(--text2);margin-bottom:10px}
+.osb-row.grand{color:var(--text);font-weight:800;font-size:1.2rem;margin-top:16px}
+.osb-row.grand span:last-child{color:var(--cyan)}
+.osb-coupon{display:flex;gap:10px;margin-bottom:1.5rem}
+.osb-coupon input{flex:1;background:var(--bg2);border:2px solid var(--border);border-radius:10px;padding:12px 16px;color:var(--text);font-size:0.9rem;font-weight:500;outline:none;font-family:'Inter',sans-serif;transition:all 0.2s}
+.osb-coupon input::placeholder{color:var(--text3)}
+.osb-coupon input:focus{border-color:var(--cyan)}
+.osb-coupon button{background:var(--bg);border:2px solid var(--border);color:var(--text);padding:12px 20px;border-radius:10px;font-size:0.95rem;font-weight:700;white-space:nowrap;transition:all 0.2s}
+.osb-coupon button:hover{border-color:var(--text);background:var(--text);color:#FFF}
+.btn-place{width:100%;background:var(--cyan);color:#FFF;border:none;padding:18px;border-radius:12px;font-size:1.05rem;font-weight:800;margin-top:20px;transition:all 0.2s;box-shadow:var(--shadow-md)}
+.btn-place:hover{background:var(--cyan2);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.secure-note{display:flex;align-items:center;justify-content:center;gap:8px;font-size:0.8rem;font-weight:600;color:var(--text2);margin-top:16px}
+.secure-dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
+
+/* SUCCESS */
+.success-page{max-width:520px;margin:0 auto;padding:6rem 1.5rem;text-align:center}
+.success-check{width:80px;height:80px;border-radius:50%;background:#D1FAE5;border:3px solid var(--green);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:2.2rem;font-weight:bold;margin:0 auto 2rem;animation:successBounce 0.5s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 10px 25px rgba(5, 150, 105, 0.2)}
+@keyframes successBounce{from{opacity:0;transform:scale(0) rotate(-45deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+.success-page h2{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;color:var(--text);margin-bottom:12px}
+.success-page p{color:var(--text2);font-size:1rem;font-weight:500;line-height:1.6;margin-bottom:2.5rem}
+
+/* TOAST */
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);background:var(--text);color:#FFF;border-radius:12px;padding:14px 24px;font-size:0.95rem;font-weight:600;z-index:1000;transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);white-space:nowrap;box-shadow:0 10px 25px rgba(0,0,0,0.2)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero-banner{grid-template-columns:1fr;min-height:auto}
+  .hero-img{height:280px}
+  .hero-phone-img{height:240px}
+  .pdp-wrap{grid-template-columns:1fr;gap:2rem}
+  .pdp-main-img{height:400px}
+  .pdp-main-img img{height:320px}
+  .checkout-grid{grid-template-columns:1fr}
+  .rating-summary-grid{grid-template-columns:1fr;gap:2rem}
+}
+@media(max-width:600px){
+  .header-inner{gap:8px}
+  .hdr-btn span{display:none}
+  .form-row-2{grid-template-columns:1fr}
+  .hero-text{padding:2.5rem 1.5rem}
+  .hero-title{font-size:2.2rem}
+  .pdp-actions{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<canvas id="pcv"></canvas>
+<div class="page">
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo" onclick="goHome()">Tru<em>Mobile</em></div>
+    <div class="search-box">
+      <span class="s-ico">⌕</span>
+      <input type="text" id="srchInput" placeholder="Search phones, brands, specs…" autocomplete="off"
+        oninput="onSearch(this.value)" onfocus="onSearch(this.value)"
+        onblur="setTimeout(()=>document.getElementById('srchSugg').classList.remove('show'),200)">
+      <div class="sugg" id="srchSugg"></div>
+    </div>
+    <div class="hdr-actions">
+      <button class="hdr-btn" onclick="toggleWishlist()" title="Wishlist">
+        ♡ <span>Wishlist</span>
+        <span class="hdr-badge" id="wishBadge">0</span>
+      </button>
+      <button class="hdr-btn" onclick="openCart()" title="Cart">
+        🛒 <span>Cart</span>
+        <span class="hdr-badge" id="cartBadge">0</span>
+      </button>
+      <button class="signin-btn" id="signinBtn" onclick="openAuth()">Sign In</button>
+    </div>
+  </div>
+</header>
+
+<!-- SUBNAV -->
+<div class="subnav">
+  <div class="subnav-inner">
+    <span class="snav-link active" onclick="goHome()">All Phones</span>
+    <span class="snav-link" onclick="filterCat('flagship')">Flagships</span>
+    <span class="snav-link" onclick="filterCat('gaming')">Gaming</span>
+    <span class="snav-link" onclick="filterCat('ai')">AI-Powered</span>
+    <span class="snav-link" onclick="filterCat('camera')">Best Camera</span>
+    <span class="snav-link" onclick="filterCat('battery')">Best Battery</span>
+    <span class="snav-link" onclick="showSection('compare')">Compare</span>
+  </div>
+</div>
+
+<!-- HOME SECTION -->
+<div class="section active" id="sec-home">
+  <div class="home-wrap">
+
+    <!-- HERO BANNER -->
+    <div class="hero-banner" id="heroBanner">
+      <div class="hero-text">
+        <div class="hero-label">New Launch · 2024</div>
+        <div class="hero-title">iPhone 16<br>Pro Max<br><span>Titanium.</span></div>
+        <div class="hero-sub">The most powerful iPhone ever. A18 Pro chip, 48MP triple camera, and up to 29 hours battery life. Now available with free delivery.</div>
+        <div class="hero-meta">
+          <div>
+            <div class="hero-price-label">Starting at</div>
+            <div class="hero-price">₹1,29,900</div>
+          </div>
+          <div style="font-size:0.9rem;font-weight:600;color:var(--text2)">★★★★★<br><span style="color:var(--text3);font-weight:500">4.9 · 14,205 reviews</span></div>
+        </div>
+        <div class="hero-btns">
+          <button class="btn-buy-now" onclick="openPDP('tm-001')">Buy Now</button>
+          <button class="btn-add-cart" onclick="addToCart('tm-001');event.stopPropagation()">Add to Cart</button>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img class="hero-phone-img" id="heroImg"
+          src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=600&q=80"
+          alt="iPhone 16 Pro Max"
+          onerror="this.src='https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-16-pro-max-1.jpg'">
+      </div>
+    </div>
+
+    <!-- CATS -->
+    <div class="cat-strip" id="catStrip">
+      <button class="cat-pill active" onclick="filterCat('all')">All Devices</button>
+      <button class="cat-pill" onclick="filterCat('flagship')">🏆 Flagship</button>
+      <button class="cat-pill" onclick="filterCat('gaming')">⚡ Gaming</button>
+      <button class="cat-pill" onclick="filterCat('ai')">🤖 AI-Powered</button>
+      <button class="cat-pill" onclick="filterCat('camera')">📷 Best Camera</button>
+      <button class="cat-pill" onclick="filterCat('battery')">🔋 Long Battery</button>
+    </div>
+
+    <div class="sec-head" id="phones-grid-section">
+      <h2>Featured <span>Devices</span></h2>
+      <a onclick="filterCat('all')">View all →</a>
+    </div>
+    <div class="phone-grid" id="phoneGrid"></div>
+  </div>
+</div>
+
+<!-- PDP SECTION -->
+<div class="section" id="sec-pdp">
+  <div class="pdp-back-bar">
+    <button onclick="goHome()">← Back</button>
+    <span>/</span>
+    <span id="pdpBreadcrumb" style="font-weight:700;color:var(--text)">Product</span>
+  </div>
+  <div class="pdp-wrap" id="pdpWrap"></div>
+  <div class="pdp-tabs-section" id="pdpTabs"></div>
+</div>
+
+<!-- TRACK SECTION -->
+<div class="section" id="sec-track">
+  <div class="track-page" id="trackContent"></div>
+</div>
+
+<!-- CHECKOUT SECTION -->
+<div class="section" id="sec-checkout">
+  <div id="checkoutContent"></div>
+</div>
+
+<!-- COMPARE SECTION -->
+<div class="section" id="sec-compare">
+  <div style="max-width:1400px;margin:0 auto;padding:3rem 1.5rem 5rem">
+    <div class="sec-head" style="margin-bottom:2.5rem"><h2>Compare <span>Devices</span></h2></div>
+    <div class="phone-grid" id="compareGrid"></div>
+  </div>
+</div>
+
+</div><!-- .page -->
+
+<!-- CART -->
+<div class="cart-overlay" id="cartOverlay" onclick="if(event.target===this)closeCart()">
+  <div class="cart-panel">
+    <div class="cart-hdr">
+      <h3>Shopping Cart</h3>
+      <button class="cart-close-btn" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody"></div>
+    <div class="cart-ftr" id="cartFtr"></div>
+  </div>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="modal-wrap" id="authModal" onclick="if(event.target===this)closeAuth()">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeAuth()">✕</button>
+    <div id="authStep1">
+      <div class="modal-title">Welcome Back</div>
+      <div class="modal-sub">Sign in to access your cart, orders, and wishlist. Quick OTP verification — no password needed.</div>
+      <div class="ph-wrap">
+        <select class="cc-sel">
+          <option>🇮🇳 +91</option><option>🇺🇸 +1</option><option>🇬🇧 +44</option><option>🇦🇪 +971</option>
+        </select>
+        <input class="ph-input" type="tel" id="phInput" placeholder="Mobile number" maxlength="10">
+      </div>
+      <button class="otp-btn" onclick="sendOTP()">Send OTP →</button>
+      <div class="modal-disclaimer">By continuing you agree to our Terms & Privacy Policy</div>
+    </div>
+    <div class="otp-step" id="authStep2">
+      <div class="modal-title" style="color:var(--cyan)">Verify OTP</div>
+      <div class="modal-sub" id="otpSub">Enter the 6-digit code sent to your number</div>
+      <div class="otp-row">
+        <input class="otp-cell" type="text" maxlength="1" oninput="otpFwd(this,0)" onkeydown="otpBack(event,0)">
+        <input class="otp-cell" type="text" maxlength="1" oninput="otpFwd(this,1)" onkeydown="otpBack(event,1)">
+        <input class="otp-cell" type="text" maxlength="1" oninput="otpFwd(this,2)" onkeydown="otpBack(event,2)">
+        <input class="otp-cell" type="text" maxlength="1" oninput="otpFwd(this,3)" onkeydown="otpBack(event,3)">
+        <input class="otp-cell" type="text" maxlength="1" oninput="otpFwd(this,4)" onkeydown="otpBack(event,4)">
+        <input class="otp-cell" type="text" maxlength="1" oninput="otpFwd(this,5)" onkeydown="otpBack(event,5)">
+      </div>
+      <div class="otp-footer">
+        <span>Expires in <strong id="otpTimer" style="color:var(--cyan)">60</strong>s</span>
+        <a href="#" onclick="sendOTP();return false">Resend OTP</a>
+      </div>
+      <button class="otp-btn" onclick="verifyOTP()">Verify & Continue →</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════════
+// PHONE DATABASE — Dynamic Storage Pricing added
+// ══════════════════════════════════════════
+const DB = [
+  {
+    id:'tm-001', brand:'Apple', name:'iPhone 16 Pro Max',
+    category:['flagship','ai','camera'],
+    badge:'new', badgeLabel:'New 2024',
+    ratingVal:4.9, ratingCount:'14,205',
+    tagline:'A18 Pro · 48MP Triple Camera · 29hr Battery',
+    color:'#A5A9B1',
+    img:'https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-16-pro-max-1.jpg',
+    img2:'https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-16-pro-max-2.jpg',
+    img3:'https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-16-pro-max-3.jpg',
+    fallback:'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=400&q=80',
+    // Now an array of objects to handle dynamic pricing
+    storage:[
+      {size:'256GB', price:129900, mrp:134900},
+      {size:'512GB', price:149900, mrp:154900},
+      {size:'1TB', price:169900, mrp:174900}
+    ],
+    colors:[{name:'Black Titanium',hex:'#2C2B2B'},{name:'White Titanium',hex:'#E8E3D5'},{name:'Natural Titanium',hex:'#A5A9B1'},{name:'Desert Titanium',hex:'#C2A97A'}],
+    keyFeatures:['A18 Pro Bionic Chip','48MP Triple Camera System','6.9" Super Retina XDR OLED','Up to 29 hours battery','Apple Intelligence AI','Camera Control Button','USB-C 3.2 Gen 2','IP68 (6m, 30min)'],
+    specs:{
+      display:{Size:'6.9-inch Super Retina XDR OLED','Resolution':'2868×1320 pixels, 460 ppi','Technology':'LTPO, ProMotion 1–120Hz','Brightness':'2000 nits peak, HDR10, Dolby Vision','Protection':'Ceramic Shield Gen 3'},
+      performance:{Chipset:'Apple A18 Pro (3nm)','CPU':'2× performance + 4× efficiency cores','GPU':'6-core Apple GPU','RAM':'8GB LPDDR5X','Storage':'256GB / 512GB / 1TB NVMe','OS':'iOS 18 (upgradable to iOS 26)'},
+      camera:{'Main Camera':'48MP, f/1.78, OIS, sensor-shift','Ultra-Wide':'48MP, f/2.2, autofocus','Telephoto':'12MP, f/2.8, 5× optical, 120mm','Video':'4K120fps, ProRes, ProRes Log','Features':'Photonic Engine, Photographic Styles','Front':'12MP TrueDepth, autofocus'},
+      battery:{Capacity:'4685mAh','Wired Charging':'25W (MagSafe), 0–50% in 30min','Wireless':'15W MagSafe, 7.5W Qi2','Estimated Life':'29hr video · 25hr streaming · 95hr audio'},
+      connectivity:{'5G':'Sub-6GHz + mmWave','Wi-Fi':'Wi-Fi 7 (802.11ax)','Bluetooth':'Bluetooth 5.3','NFC':'Yes, Apple Pay','USB-C':'USB 3.2 Gen 2, DisplayPort'},
+      design:{Dimensions:'163.0 × 77.6 × 8.25mm','Weight':'227g','Frame':'Grade 5 Titanium','Back':'Textured matte glass','Water Resistance':'IP68 — 6 metres for 30 minutes'}
+    },
+    ratings:{overall:4.9,count:'14,205',breakdown:[84,12,2,1,1],attrs:{Camera:4.9,Battery:4.7,Display:4.8,Performance:5.0,'Build Quality':4.9}}
+  },
+  {
+    id:'tm-002', brand:'Samsung', name:'Galaxy S25 Ultra',
+    category:['flagship','ai','camera'],
+    badge:'hot', badgeLabel:'Best Seller',
+    ratingVal:4.8, ratingCount:'9,841',
+    tagline:'Snapdragon 8 Elite · 200MP Camera · S Pen',
+    color:'#2D2D2E',
+    img:'https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s25-ultra-1.jpg',
+    img2:'https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s25-ultra-2.jpg',
+    img3:'https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s25-ultra-3.jpg',
+    fallback:'https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?auto=format&fit=crop&w=400&q=80',
+    storage:[
+      {size:'256GB', price:134999, mrp:144999},
+      {size:'512GB', price:144999, mrp:154999},
+      {size:'1TB', price:164999, mrp:174999}
+    ],
+    colors:[{name:'Titanium Black',hex:'#2D2D2E'},{name:'Titanium Silver Blue',hex:'#8FA3BA'},{name:'Titanium Whitesilver',hex:'#E8E4DE'},{name:'Titanium Gray',hex:'#6A6A6A'}],
+    keyFeatures:['Snapdragon 8 Elite','200MP Main Camera + 5× + 10× Zoom','6.9" QHD+ Dynamic AMOLED 2X','5000mAh · 45W Super Fast Charging','Galaxy AI + Samsung DeX','Built-in S Pen Stylus','Titanium Armor Frame','IP68 Water Resistance'],
+    specs:{
+      display:{Size:'6.9-inch Dynamic AMOLED 2X','Resolution':'3088×1440, 501 ppi','Technology':'LTPO, 1–120Hz adaptive','Brightness':'2600 nits peak, HDR10+','Protection':'Corning Gorilla Glass Armor 2'},
+      performance:{Chipset:'Qualcomm Snapdragon 8 Elite (3nm)','CPU':'Octa-core (2×4.47GHz + 6×3.53GHz)','GPU':'Adreno 830','RAM':'12GB LPDDR5X','Storage':'256GB / 512GB / 1TB UFS 4.0','OS':'Android 15, One UI 7'},
+      camera:{'Main Camera':'200MP, f/1.7, OIS, 1/1.3" sensor','Ultra-Wide':'50MP, f/1.9, 120° FOV','Telephoto 1':'10MP, f/2.4, 3× optical','Telephoto 2':'50MP, f/3.4, 5× optical periscope','Video':'8K30fps, 4K120fps','Front':'12MP, f/2.2, auto-focus'},
+      battery:{Capacity:'5000mAh','Wired Charging':'45W Super Fast Charging','Wireless':'15W wireless, 4.5W reverse','Estimated Life':'~30hr mixed · ~75hr audio'},
+      connectivity:{'5G':'Sub-6GHz + mmWave','Wi-Fi':'Wi-Fi 7','Bluetooth':'Bluetooth 5.4','NFC':'Samsung Pay','USB-C':'USB 3.2 Gen 2'},
+      design:{Dimensions:'162.8 × 77.6 × 8.2mm','Weight':'218g','Frame':'Titanium','Back':'Corning Gorilla Glass Armor 2','Water Resistance':'IP68 — 1.5 metres for 30 minutes'}
+    },
+    ratings:{overall:4.8,count:'9,841',breakdown:[78,14,5,2,1],attrs:{Camera:5.0,Battery:4.6,Display:4.9,Performance:4.9,'S Pen':4.8}}
+  },
+  {
+    id:'tm-003', brand:'OnePlus', name:'OnePlus 13',
+    category:['flagship','camera','battery'],
+    badge:'new', badgeLabel:'2025',
+    ratingVal:4.7, ratingCount:'6,320',
+    tagline:'Hasselblad Camera · 100W SuperVOOC · Snapdragon 8 Elite',
+    color:'#1B3A2F',
+    img:'https://fdn2.gsmarena.com/vv/pics/oneplus/oneplus-13-1.jpg',
+    img2:'https://fdn2.gsmarena.com/vv/pics/oneplus/oneplus-13-2.jpg',
+    img3:'https://fdn2.gsmarena.com/vv/pics/oneplus/oneplus-13-3.jpg',
+    fallback:'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=400&q=80',
+    storage:[
+      {size:'256GB', price:69999, mrp:74999},
+      {size:'512GB', price:79999, mrp:84999}
+    ],
+    colors:[{name:'Midnight Ocean',hex:'#1B3A2F'},{name:'Arctic Dawn',hex:'#E8E5DC'}],
+    keyFeatures:['Snapdragon 8 Elite Chipset','Hasselblad Triple Camera','6.82" LTPO4 AMOLED ProXDR','6000mAh · 100W SuperVOOC','50W AirVOOC Wireless','Dual-antenna WiFi 7','IP69 Water Resistance','OxygenOS 15 based on Android 15'],
+    specs:{
+      display:{Size:'6.82-inch ProXDR LTPO4 AMOLED','Resolution':'3168×1440, 510 ppi','Technology':'LTPO4, 1–120Hz','Brightness':'4500 nits peak, HDR10+','Protection':'Ceramic Guard'},
+      performance:{Chipset:'Snapdragon 8 Elite (3nm)','CPU':'Octa-core (2×4.32GHz + 6×3.53GHz)','GPU':'Adreno 830','RAM':'12GB / 16GB LPDDR5X','Storage':'256GB / 512GB UFS 4.0','OS':'Android 15, OxygenOS 15'},
+      camera:{'Main Camera':'50MP, f/1.6, Hasselblad, 1/1.43" sensor','Ultra-Wide':'50MP, f/2.0, 120° FOV','Telephoto':'50MP, f/2.6, 3× optical','Video':'4K120fps, AI motion deblur','Features':'Hasselblad Natural Colour Calibration','Front':'32MP, f/2.4'},
+      battery:{Capacity:'6000mAh','Wired Charging':'100W SUPERVOOC (0–100% in 36min)','Wireless':'50W AirVOOC wireless','Estimated Life':'~32hr mixed · ~100hr audio'},
+      connectivity:{'5G':'SA/NSA','Wi-Fi':'Wi-Fi 7, tri-band','Bluetooth':'Bluetooth 5.4','NFC':'Yes','USB-C':'USB 3.2 Gen 1'},
+      design:{Dimensions:'162.9 × 76.0 × 8.5mm','Weight':'210g','Frame':'Aluminium','Back':'Nano-crystalline ceramic back / Alcantara suede','Water Resistance':'IP69'}
+    },
+    ratings:{overall:4.7,count:'6,320',breakdown:[72,18,6,3,1],attrs:{Camera:4.6,Battery:4.9,Display:4.7,Performance:4.8,'Charging Speed':5.0}}
+  },
+  {
+    id:'tm-004', brand:'Google', name:'Pixel 9 Pro',
+    category:['flagship','ai','camera'],
+    badge:'new', badgeLabel:'Gemini AI',
+    ratingVal:4.7, ratingCount:'7,650',
+    tagline:'Gemini AI · Tensor G4 · Best Computational Photography',
+    color:'#1A1A1A',
+    img:'https://fdn2.gsmarena.com/vv/pics/google/google-pixel-9-pro-1.jpg',
+    img2:'https://fdn2.gsmarena.com/vv/pics/google/google-pixel-9-pro-2.jpg',
+    img3:'https://fdn2.gsmarena.com/vv/pics/google/google-pixel-9-pro-3.jpg',
+    fallback:'https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=400&q=80',
+    storage:[
+      {size:'128GB', price:109999, mrp:119999},
+      {size:'256GB', price:119999, mrp:129999},
+      {size:'512GB', price:134999, mrp:144999}
+    ],
+    colors:[{name:'Obsidian',hex:'#1A1A1A'},{name:'Porcelain',hex:'#E8E4DC'},{name:'Hazel',hex:'#757B60'},{name:'Rose Quartz',hex:'#C9A8A8'}],
+    keyFeatures:['Google Tensor G4 Chip','Gemini Nano on-device AI','50MP Triple Camera','6.3" LTPO OLED ProDisplay','4700mAh Battery','Magic Eraser + Photo Unblur','Temperature Sensor','7 years of OS updates'],
+    specs:{
+      display:{Size:'6.3-inch LTPO OLED','Resolution':'2856×1280, 495 ppi','Technology':'LTPO, 1–120Hz','Brightness':'3000 nits peak, HDR10+','Protection':'Corning Gorilla Glass Victus 2'},
+      performance:{Chipset:'Google Tensor G4 (4nm)','CPU':'Octa-core custom','GPU':'Immortalis-G715s MC10','RAM':'16GB LPDDR5','Storage':'128GB / 256GB / 512GB UFS 3.1','OS':'Android 15, pure Google'},
+      camera:{'Main Camera':'50MP, f/1.68, OIS, 1/1.31" sensor','Ultra-Wide':'48MP, f/1.7, 123° FOV','Telephoto':'48MP, f/2.8, 5× optical','Video':'4K60fps, Cinematic Blur','Features':'Magic Eraser, Best Take, Photo Unblur','Front':'10.5MP, f/2.2, autofocus'},
+      battery:{Capacity:'4700mAh','Wired Charging':'27W fast charging','Wireless':'23W wireless, 12W reverse','Estimated Life':'~24hr mixed use'},
+      connectivity:{'5G':'Sub-6GHz + mmWave','Wi-Fi':'Wi-Fi 7','Bluetooth':'Bluetooth 5.3','NFC':'Google Pay','USB-C':'USB 3.2 Gen 2'},
+      design:{Dimensions:'152.8 × 72.0 × 8.5mm','Weight':'199g','Frame':'Polished aluminum','Back':'Matte glass','Water Resistance':'IP68 — 1.5m for 30 minutes'}
+    },
+    ratings:{overall:4.7,count:'7,650',breakdown:[68,22,6,3,1],attrs:{Camera:4.9,'AI Features':5.0,Battery:4.5,Display:4.7,Software:4.9}}
+  },
+  {
+    id:'tm-005', brand:'Xiaomi', name:'Xiaomi 15 Ultra',
+    category:['flagship','camera'],
+    badge:'hot', badgeLabel:'Best Camera',
+    ratingVal:4.7, ratingCount:'5,102',
+    tagline:'Leica 1-inch Sensor · 200MP Zoom · 90W Wireless',
+    color:'#B0B3B8',
+    img:'https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-15-ultra-1.jpg',
+    img2:'https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-15-ultra-2.jpg',
+    img3:'https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-15-ultra-3.jpg',
+    fallback:'https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?auto=format&fit=crop&w=400&q=80',
+    storage:[
+      {size:'512GB', price:99999, mrp:109999},
+      {size:'1TB', price:114999, mrp:124999}
+    ],
+    colors:[{name:'Titanium Silver',hex:'#B0B3B8'},{name:'Ceramic Black',hex:'#1A1A1A'}],
+    keyFeatures:['Leica 1-inch Sensor (50MP Main)','4× Leica Summilux Optical Zoom System','200MP Periscope Telephoto (4.3× + 10×)','6.73" LTPO AMOLED 144Hz','5410mAh · 90W HyperCharge','90W Wireless Charging','Snapdragon 8 Elite','HyperOS 2.0'],
+    specs:{
+      display:{Size:'6.73-inch LTPO AMOLED','Resolution':'3200×1440, 522 ppi','Technology':'LTPO5, 1–144Hz','Brightness':'3200 nits peak, Dolby Vision','Protection':'Ceramic Shield'},
+      performance:{Chipset:'Snapdragon 8 Elite (3nm)','CPU':'Octa-core (2×4.32GHz + 6×3.53GHz)','GPU':'Adreno 830','RAM':'16GB / 24GB LPDDR5X','Storage':'512GB / 1TB UFS 4.0','OS':'Android 15, HyperOS 2.0'},
+      camera:{'Main Camera':'50MP Leica, f/1.63, 1-inch Sony LYT-900','Ultra-Wide':'50MP Leica, f/1.8, 115° FOV','Telephoto 1':'50MP, f/2.5, 3.2× optical, OIS','Telephoto 2':'200MP, f/2.8, 4.3× + 10× optical periscope','Video':'8K24fps, 4K120fps, Leica Watercolor','Front':'32MP, f/2.0'},
+      battery:{Capacity:'5410mAh','Wired Charging':'90W HyperCharge (0–100% in 37min)','Wireless':'90W wireless (fastest ever)','Estimated Life':'~30hr mixed'},
+      connectivity:{'5G':'SA/NSA','Wi-Fi':'Wi-Fi 7','Bluetooth':'Bluetooth 5.4','NFC':'Xiaomi Pay','USB-C':'USB 3.2 Gen 2'},
+      design:{Dimensions:'161.3 × 75.3 × 9.5mm','Weight':'226g','Frame':'Titanium','Back':'Ceramic or Vegan Leather','Water Resistance':'IP68'}
+    },
+    ratings:{overall:4.7,count:'5,102',breakdown:[70,19,7,3,1],attrs:{Camera:5.0,Battery:4.8,Display:4.8,Performance:4.9,'Charging':5.0}}
+  },
+  {
+    id:'tm-006', brand:'ASUS', name:'ROG Phone 9 Pro',
+    category:['gaming'],
+    badge:'gaming', badgeLabel:'Gaming',
+    ratingVal:4.8, ratingCount:'4,450',
+    tagline:'165Hz AMOLED · Snapdragon 8 Elite · AirTrigger 7',
+    color:'#0E1218',
+    img:'https://fdn2.gsmarena.com/vv/pics/asus/asus-rog-phone-9-pro-1.jpg',
+    img2:'https://fdn2.gsmarena.com/vv/pics/asus/asus-rog-phone-9-pro-2.jpg',
+    img3:'https://fdn2.gsmarena.com/vv/pics/asus/asus-rog-phone-9-pro-3.jpg',
+    fallback:'https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=400&q=80',
+    storage:[
+      {size:'512GB', price:79999, mrp:89999},
+      {size:'1TB', price:94999, mrp:104999}
+    ],
+    colors:[{name:'Phantom Black',hex:'#0E1218'},{name:'Storm White',hex:'#E8E8E8'}],
+    keyFeatures:['Snapdragon 8 Elite Overclocked 4.0GHz','165Hz Samsung AMOLED Display','AirTrigger 7 Ultra Shoulder Buttons','6800mAh Dual-cell Battery','65W Bypass Charging (no battery heat)','Active Cooling Fan AeroActive Cooler X','ROG GameCool 9 Vapor Chamber','16GB / 24GB LPDDR5X RAM'],
+    specs:{
+      display:{Size:'6.78-inch AMOLED','Resolution':'2400×1080, 387 ppi','Technology':'1–165Hz LTPO, 1ms response','Brightness':'2500 nits peak, Dolby Vision HDR','Protection':'Corning Gorilla Glass Victus 2'},
+      performance:{Chipset:'Snapdragon 8 Elite Overclocked (3nm)','CPU':'Octa-core (2×4.32GHz OC)','GPU':'Adreno 830 OC','RAM':'16GB / 24GB LPDDR5X','Storage':'512GB / 1TB UFS 4.0','OS':'Android 15, ROG UI'},
+      camera:{'Main Camera':'50MP, f/1.9, GN5 sensor','Ultra-Wide':'13MP, f/2.2, 120°','Macro':'5MP, f/2.4','Video':'4K60fps, 8K24fps','Features':'ROG AI Night Mode, Instant Capture','Front':'32MP, f/2.5'},
+      battery:{Capacity:'6800mAh (2×3400mAh dual-cell)','Wired Charging':'65W Bypass HyperCharge','Wireless':'None','Estimated Life':'38hr mixed · bypass gaming mode eliminates heat'},
+      connectivity:{'5G':'SA/NSA, dual 5G','Wi-Fi':'Wi-Fi 7, gaming-optimised','Bluetooth':'Bluetooth 5.4','NFC':'Yes','USB-C':'USB 3.2 Gen 2 (side port for gaming)'},
+      design:{Dimensions:'163.8 × 76.8 × 8.9mm','Weight':'227g','Frame':'Aerospace-grade aluminum','Back':'Matte frosted glass with RGB logo','Water Resistance':'IPX4'}
+    },
+    ratings:{overall:4.8,count:'4,450',breakdown:[76,17,5,1,1],attrs:{Gaming:5.0,Battery:4.7,Display:4.9,Performance:5.0,'Thermals':4.8}}
+  }
+];
+
+// ══════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════
+let cart = [], wishlist = [], user = null;
+let otpTimerInt = null, otpSecs = 60;
+let activePDP = null;
+
+// ══════════════════════════════════════════
+// PARTICLES - LIGHT MODE ADJUSTED
+// ══════════════════════════════════════════
+(function(){
+  const cv = document.getElementById('pcv');
+  const cx = cv.getContext('2d');
+  let W, H, pts = [];
+  function resize(){ W = cv.width = innerWidth; H = cv.height = innerHeight; }
+  function init(){
+    pts = [];
+    for(let i=0;i<50;i++) pts.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.2+0.5,dx:(Math.random()-.5)*.2,dy:(Math.random()-.5)*.2,a:Math.random()*.15+0.05,c:Math.random()>.5?'0,102,255':'108,63,245'});
+  }
+  function draw(){
+    cx.clearRect(0,0,W,H);
+    pts.forEach(p=>{cx.beginPath();cx.arc(p.x,p.y,p.r,0,Math.PI*2);cx.fillStyle=`rgba(${p.c},${p.a})`;cx.fill();p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>W)p.dx*=-1;if(p.y<0||p.y>H)p.dy*=-1;});
+    requestAnimationFrame(draw);
+  }
+  resize();init();draw();
+  addEventListener('resize',()=>{resize();init();});
+})();
+
+// ══════════════════════════════════════════
+// SECTIONS
+// ══════════════════════════════════════════
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  const s = document.getElementById('sec-'+id);
+  if(s) s.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function goHome(){
+  showSection('home');
+  renderGrid(DB);
+  document.querySelectorAll('.snav-link').forEach((l,i)=>l.classList.toggle('active',i===0));
+}
+
+// ══════════════════════════════════════════
+// SEARCH
+// ══════════════════════════════════════════
+function onSearch(q){
+  const el = document.getElementById('srchSugg');
+  if(!q.trim()){el.classList.remove('show');return;}
+  const res = DB.filter(p=>p.name.toLowerCase().includes(q.toLowerCase())||p.brand.toLowerCase().includes(q.toLowerCase())||p.tagline.toLowerCase().includes(q.toLowerCase()));
+  if(!res.length){el.classList.remove('show');return;}
+  el.innerHTML = res.map(p=>`
+    <div class="sugg-item" onclick="openPDP('${p.id}')">
+      <img src="${p.img}" onerror="this.src='${p.fallback}'" alt="${p.name}">
+      <div style="flex:1">
+        <div style="font-size:0.85rem;font-weight:700;color:var(--text)">${p.name}</div>
+        <div style="font-size:0.75rem;color:var(--text3)">${p.tagline}</div>
+      </div>
+      <div style="color:var(--cyan);font-size:0.9rem;font-weight:700">₹${p.storage[0].price.toLocaleString('en-IN')}</div>
+    </div>`).join('');
+  el.classList.add('show');
+}
+
+// ══════════════════════════════════════════
+// PHONE GRID
+// ══════════════════════════════════════════
+function stars(n){
+  const full = Math.floor(n), half = n%1>=0.5?1:0;
+  return '<span class="star">'+'★'.repeat(full)+'\u00bd'.repeat(half)+'</span>';
+}
+function renderGrid(list){
+  const g = document.getElementById('phoneGrid');
+  if(!g) return;
+  g.innerHTML = list.map(p=>{
+    const inWish = wishlist.includes(p.id);
+    const basePrice = p.storage[0].price;
+    const baseMrp = p.storage[0].mrp;
+    const saving = Math.round((1-(basePrice/baseMrp))*100);
+    return `
+    <div class="phone-card" onclick="openPDP('${p.id}')">
+      <div class="pc-img">
+        <span class="pc-badge badge-${p.badge}">${p.badgeLabel}</span>
+        <button class="pc-wish ${inWish?'active':''}" onclick="event.stopPropagation();toggleWish('${p.id}')" title="Wishlist">♡</button>
+        <img src="${p.img}" alt="${p.name}" onerror="this.src='${p.fallback}'" loading="lazy">
+      </div>
+      <div class="pc-body">
+        <div class="pc-brand">${p.brand}</div>
+        <div class="pc-name">${p.name}</div>
+        <div class="pc-spec">${p.tagline}</div>
+        <div class="pc-row" style="margin-bottom:14px">
+          <div class="pc-price">
+            ₹${basePrice.toLocaleString('en-IN')}
+            <small>MRP ₹${baseMrp.toLocaleString('en-IN')} · Save ${saving}%</small>
+          </div>
+          <div class="pc-stars">${stars(p.ratingVal)} ${p.ratingVal}</div>
+        </div>
+      </div>
+      <div class="pc-quick">
+        <button onclick="event.stopPropagation();addToCart('${p.id}', 0)">🛒 Add to Cart</button>
+        <button onclick="event.stopPropagation();openPDP('${p.id}')">👁 View Details</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+renderGrid(DB);
+
+// compare grid
+function renderCompare(){
+  const g = document.getElementById('compareGrid');
+  if(!g) return;
+  g.innerHTML = DB.map(p=>`
+    <div class="phone-card" style="cursor:default">
+      <div class="pc-img">
+        <img src="${p.img}" alt="${p.name}" onerror="this.src='${p.fallback}'" loading="lazy">
+      </div>
+      <div class="pc-body">
+        <div class="pc-brand">${p.brand}</div>
+        <div class="pc-name">${p.name}</div>
+        <div style="font-size:0.8rem;color:var(--text2);line-height:1.7;margin-bottom:12px;font-weight:500">
+          <div>📺 ${p.specs.display.Size}</div>
+          <div>⚡ ${p.specs.performance.Chipset}</div>
+          <div>🔋 ${p.specs.battery.Capacity}</div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-price">₹${p.storage[0].price.toLocaleString('en-IN')}</div>
+          <div class="pc-stars">${stars(p.ratingVal)}</div>
+        </div>
+      </div>
+      <div class="pc-quick">
+        <button onclick="addToCart('${p.id}', 0)">🛒 Cart</button>
+        <button onclick="openPDP('${p.id}')">View →</button>
+      </div>
+    </div>`).join('');
+}
+renderCompare();
+
+function filterCat(cat){
+  document.querySelectorAll('.cat-pill').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  const list = cat==='all'?DB:DB.filter(p=>p.category.includes(cat));
+  renderGrid(list);
+  document.getElementById('phones-grid-section')?.scrollIntoView({behavior:'smooth'});
+}
+
+// ══════════════════════════════════════════
+// PDP - Dynamic Pricing Logic Added
+// ══════════════════════════════════════════
+function openPDP(id){
+  const p = DB.find(x=>x.id===id);
+  if(!p) return;
+  activePDP = p;
+
+  document.getElementById('pdpBreadcrumb').textContent = p.name;
+
+  const specRows = (obj)=>Object.entries(obj).map(([k,v])=>`<div class="spec-row"><span class="spec-key">${k}</span><span class="spec-val">${v}</span></div>`).join('');
+  const specGroups = Object.entries(p.specs).map(([group,obj])=>`
+    <div class="specs-group">
+      <div class="specs-group-title">${group}</div>
+      ${specRows(obj)}
+    </div>`).join('');
+
+  const attrCards = Object.entries(p.ratings.attrs).map(([k,v])=>`
+    <div class="attr-card">
+      <div class="attr-score">${v}</div>
+      <div class="attr-name">${k}</div>
+    </div>`).join('');
+
+  const colorDots = p.colors.map((c,i)=>`<div class="color-dot ${i===0?'active':''}" style="background:${c.hex}" title="${c.name}" onclick="selectColor(this)"></div>`).join('');
+  
+  // Storage Buttons with Index
+  const storBtns = p.storage.map((s,i)=>`
+    <button class="stor-btn ${i===0?'active':''}" data-idx="${i}" onclick="selectStoragePDP(this, '${p.id}', ${i})">
+      ${s.size}
+      <span>₹${s.price.toLocaleString('en-IN')}</span>
+    </button>`).join('');
+    
+  const featureList = p.keyFeatures.map(f=>`<li style="font-size:0.9rem;font-weight:500;color:var(--text2);padding:8px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:12px"><span style="color:var(--cyan);flex-shrink:0;font-weight:bold">✓</span>${f}</li>`).join('');
+  
+  // Base Price Setup
+  const baseVar = p.storage[0];
+  const saving = Math.round((1-(baseVar.price/baseVar.mrp))*100);
+
+  document.getElementById('pdpWrap').innerHTML = `
+    <div class="pdp-media">
+      <div class="pdp-main-img">
+        <img id="pdpMainImg" src="${p.img}" alt="${p.name}" onerror="this.src='${p.fallback}'">
+        <div class="zoom-hint">🔍 Hover to zoom</div>
+      </div>
+      <div class="pdp-thumbs">
+        <div class="pdp-thumb active" onclick="swapImg(this,'${p.img}','${p.fallback}')"><img src="${p.img}" onerror="this.src='${p.fallback}'"></div>
+        <div class="pdp-thumb" onclick="swapImg(this,'${p.img2}','${p.fallback}')"><img src="${p.img2}" onerror="this.src='${p.fallback}'"></div>
+        <div class="pdp-thumb" onclick="swapImg(this,'${p.img3}','${p.fallback}')"><img src="${p.img3}" onerror="this.src='${p.fallback}'"></div>
+      </div>
+    </div>
+    <div class="pdp-info">
+      <div class="pdp-brand">${p.brand}</div>
+      <div class="pdp-name">${p.name}</div>
+      <div class="pdp-rating-row">
+        <span class="pdp-stars">${'★'.repeat(Math.floor(p.ratingVal))}${p.ratingVal%1>=0.5?'½':''}</span>
+        <span class="pdp-rating-count">${p.ratingVal} · <a>Read ${p.ratingCount} reviews</a></span>
+      </div>
+      <div class="pdp-price-block">
+        <div class="pdp-price" id="pdpPriceDisplay">₹${baseVar.price.toLocaleString('en-IN')}</div>
+        <div class="pdp-price-detail">
+          <span class="mrp" id="pdpMrpDisplay">MRP ₹${baseVar.mrp.toLocaleString('en-IN')}</span>
+          <span class="saving" id="pdpSavingDisplay">Save ₹${(baseVar.mrp-baseVar.price).toLocaleString('en-IN')} (${saving}%)</span>
+        </div>
+        <div class="pdp-tax">Inclusive of all taxes. <strong style="color:var(--green)">FREE Delivery</strong> by tomorrow.</div>
+      </div>
+      <div class="pdp-delivery">
+        <span class="icon">🚚</span>
+        <span><strong>Free Express Delivery</strong> — Dispatched within 24 hours. 100% authentic, brand-sealed.</span>
+      </div>
+      <div class="pdp-label">Storage Capacity</div>
+      <div class="storage-options">${storBtns}</div>
+      <div class="pdp-label">Colour Finish</div>
+      <div class="color-options" id="pdpColors">${colorDots}</div>
+      <div class="pdp-actions">
+        <button class="btn-cart-full" onclick="addToCartPDP('${p.id}')">Add to Cart</button>
+        <button class="btn-buynow-full" onclick="buyNowPDP('${p.id}')">Buy Now</button>
+      </div>
+      <div class="trust-row">
+        <div class="trust-badge"><div class="t-icon">🔒</div><strong>Secure Pay</strong>256-bit SSL</div>
+        <div class="trust-badge"><div class="t-icon">↩</div><strong>7-Day Return</strong>No questions</div>
+        <div class="trust-badge"><div class="t-icon">✓</div><strong>Genuine</strong>Brand sealed</div>
+      </div>
+    </div>`;
+
+  document.getElementById('pdpTabs').innerHTML = `
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab(this,'tab-specs')">Full Specifications</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-features')">Key Features</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-ratings')">Ratings & Reviews</button>
+    </div>
+    <div class="tab-pane active" id="tab-specs">${specGroups}</div>
+    <div class="tab-pane" id="tab-features">
+      <ul style="list-style:none;max-width:700px">${featureList}</ul>
+    </div>
+    <div class="tab-pane" id="tab-ratings">
+      <div class="rating-summary-grid">
+        <div class="rating-big-block">
+          <div class="rating-number">${p.ratings.overall}</div>
+          <div class="rating-stars-big">${'★'.repeat(Math.floor(p.ratings.overall))}</div>
+          <div class="rating-count-label">${p.ratings.count} verified ratings</div>
+        </div>
+        <div>
+          <div class="bars-wrap">
+            ${p.ratings.breakdown.map((pct,i)=>`
+              <div class="bar-row">
+                <span class="bar-label">${5-i}★</span>
+                <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
+                <span class="bar-pct">${pct}%</span>
+              </div>`).join('')}
+          </div>
+        </div>
+      </div>
+      <div class="attr-grid">${attrCards}</div>
+    </div>`;
+
+  showSection('pdp');
+}
+
+function selectStoragePDP(btn, phoneId, index){
+  document.querySelectorAll('.stor-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  
+  const p = DB.find(x=>x.id===phoneId);
+  const variant = p.storage[index];
+  const saving = Math.round((1-(variant.price/variant.mrp))*100);
+  
+  document.getElementById('pdpPriceDisplay').textContent = `₹${variant.price.toLocaleString('en-IN')}`;
+  document.getElementById('pdpMrpDisplay').textContent = `MRP ₹${variant.mrp.toLocaleString('en-IN')}`;
+  document.getElementById('pdpSavingDisplay').textContent = `Save ₹${(variant.mrp-variant.price).toLocaleString('en-IN')} (${saving}%)`;
+}
+
+function swapImg(thumb, url, fallback){
+  document.querySelectorAll('.pdp-thumb').forEach(t=>t.classList.remove('active'));
+  thumb.classList.add('active');
+  const main = document.getElementById('pdpMainImg');
+  if(main){ main.src = url; main.onerror = ()=>main.src=fallback; }
+}
+function selectColor(dot){
+  document.querySelectorAll('.color-dot').forEach(d=>d.classList.remove('active'));
+  dot.classList.add('active');
+}
+function switchTab(btn, tabId){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+}
+
+// ══════════════════════════════════════════
+// CART & PRICING
+// ══════════════════════════════════════════
+function addToCartPDP(id) {
+  const activeBtn = document.querySelector('.stor-btn.active');
+  const vIdx = activeBtn ? parseInt(activeBtn.dataset.idx) : 0;
+  addToCart(id, vIdx);
+}
+function buyNowPDP(id) {
+  addToCartPDP(id);
+  openCheckout();
+}
+
+function addToCart(id, variantIndex = 0){
+  const p = DB.find(x=>x.id===id);
+  if(!p) return;
+  const variant = p.storage[variantIndex];
+  
+  const ex = cart.find(i=>i.id===id && i.storage===variant.size);
+  if(ex) ex.qty++;
+  else cart.push({id, storage:variant.size, price:variant.price, qty:1});
+  
+  updateBadges();
+  toast(`${p.name} (${variant.size}) added to cart 🛒`);
+}
+
+function removeFromCart(id, stor){
+  cart = cart.filter(i=>!(i.id===id && i.storage===stor));
+  updateBadges();
+  renderCart();
+}
+function updateBadges(){
+  const ct = cart.reduce((s,i)=>s+i.qty,0);
+  const cb = document.getElementById('cartBadge');
+  cb.style.display = ct>0?'flex':'none'; cb.textContent = ct;
+  const wb = document.getElementById('wishBadge');
+  wb.style.display = wishlist.length>0?'flex':'none'; wb.textContent = wishlist.length;
+}
+function openCart(){ document.getElementById('cartOverlay').classList.add('open'); renderCart(); }
+function closeCart(){ document.getElementById('cartOverlay').classList.remove('open'); }
+function renderCart(){
+  const body = document.getElementById('cartBody');
+  const ftr = document.getElementById('cartFtr');
+  if(!cart.length){
+    body.innerHTML = '<div class="cart-empty">Your cart is empty.<br><br><button style="background:var(--cyan);color:#FFF;border:none;padding:10px 20px;border-radius:8px;margin-top:15px;font-weight:600" onclick="closeCart()">Browse devices</button></div>';
+    ftr.innerHTML = '';
+    return;
+  }
+  body.innerHTML = cart.map(item=>{
+    const p = DB.find(x=>x.id===item.id);
+    if(!p) return '';
+    return `<div class="cart-item">
+      <div class="ci-img"><img src="${p.img}" onerror="this.src='${p.fallback}'" alt="${p.name}"></div>
+      <div class="ci-info">
+        <div class="ci-brand">${p.brand}</div>
+        <div class="ci-name">${p.name}</div>
+        <div class="ci-price">₹${(item.price*item.qty).toLocaleString('en-IN')}</div>
+        <div class="ci-storage">${item.storage} · Qty: ${item.qty}</div>
+      </div>
+      <button class="ci-remove" onclick="removeFromCart('${p.id}','${item.storage}')">✕</button>
+    </div>`;
+  }).join('');
+  
+  const sub = cart.reduce((s,i)=>s+(i.price*i.qty),0);
+  const tax = Math.round(sub*0.05);
+  const ship = sub>50000?0:99;
+  const total = sub+tax+ship;
+  ftr.innerHTML = `
+    <div class="price-breakdown">
+      <div class="pb-row"><span>Subtotal</span><span>₹${sub.toLocaleString('en-IN')}</span></div>
+      <div class="pb-row"><span>GST (5%)</span><span>₹${tax.toLocaleString('en-IN')}</span></div>
+      <div class="pb-row"><span>Delivery</span><span>${ship===0?'<span style="color:var(--green);font-weight:700">FREE</span>':'₹'+ship}</span></div>
+      <div class="pb-row total"><span>Total</span><span>₹${total.toLocaleString('en-IN')}</span></div>
+    </div>
+    <button class="btn-checkout" onclick="closeCart();openCheckout()">Proceed to Checkout →</button>`;
+}
+
+// ══════════════════════════════════════════
+// WISHLIST
+// ══════════════════════════════════════════
+function toggleWish(id){
+  const idx = wishlist.indexOf(id);
+  if(idx===-1){ wishlist.push(id); toast('Added to wishlist ♥'); }
+  else { wishlist.splice(idx,1); toast('Removed from wishlist'); }
+  updateBadges();
+  renderGrid(DB);
+}
+function toggleWishlist(){
+  const list = wishlist.length?DB.filter(p=>wishlist.includes(p.id)):DB;
+  showSection('home');
+  renderGrid(list);
+  toast(wishlist.length?`Showing ${wishlist.length} wishlisted items`:'Wishlist is empty');
+}
+
+// ══════════════════════════════════════════
+// AUTH
+// ══════════════════════════════════════════
+function openAuth(){ document.getElementById('authModal').classList.add('open'); }
+function closeAuth(){ document.getElementById('authModal').classList.remove('open'); clearInterval(otpTimerInt); }
+function sendOTP(){
+  const v = document.getElementById('phInput').value;
+  if(v.length<8){ toast('Enter a valid phone number'); return; }
+  document.getElementById('authStep1').style.display = 'none';
+  document.getElementById('authStep2').classList.add('show');
+  document.getElementById('otpSub').textContent = `OTP sent to +91 ${v}`;
+  otpSecs = 60; clearInterval(otpTimerInt);
+  otpTimerInt = setInterval(()=>{ const el=document.getElementById('otpTimer'); if(el) el.textContent=--otpSecs; if(otpSecs<=0) clearInterval(otpTimerInt); },1000);
+  setTimeout(()=>{ const cells=document.querySelectorAll('.otp-cell'); '123456'.split('').forEach((d,i)=>{if(cells[i]) cells[i].value=d;}); },1500);
+}
+function otpFwd(el, idx){ if(el.value){ const cells=document.querySelectorAll('.otp-cell'); if(cells[idx+1]) cells[idx+1].focus(); } }
+function otpBack(e, idx){ if(e.key==='Backspace'&&!e.target.value){ const cells=document.querySelectorAll('.otp-cell'); if(cells[idx-1]) cells[idx-1].focus(); } }
+function verifyOTP(){
+  const code = Array.from(document.querySelectorAll('.otp-cell')).map(i=>i.value).join('');
+  if(code.length<6){ toast('Enter all 6 digits'); return; }
+  clearInterval(otpTimerInt);
+  user = { phone: document.getElementById('phInput').value };
+  const btn = document.getElementById('signinBtn');
+  btn.textContent = '✓ Signed In'; btn.style.background = '#F0FDF4'; btn.style.color = 'var(--green)'; btn.style.border = '1px solid #BBF7D0'; btn.style.boxShadow = 'none';
+  closeAuth();
+  toast('Welcome to TruMobile! 🎉');
+}
+
+// ══════════════════════════════════════════
+// CHECKOUT
+// ══════════════════════════════════════════
+function openCheckout(){
+  if(!user){ openAuth(); toast('Sign in to proceed to checkout'); return; }
+  if(!cart.length){ toast('Your cart is empty'); return; }
+  renderCheckout(); showSection('checkout');
+}
+function renderCheckout(){
+  const sub = cart.reduce((s,i)=>s+(i.price*i.qty),0);
+  const tax = Math.round(sub*0.05); const ship = sub>50000?0:99; const total = sub+tax+ship;
+  const items = cart.map(item=>{
+    const p = DB.find(x=>x.id===item.id); if(!p) return '';
+    return `<div class="osb-item">
+      <div class="osb-img"><img src="${p.img}" onerror="this.src='${p.fallback}'" alt="${p.name}"></div>
+      <div class="osb-name">${p.brand} ${p.name}<br><span style="font-size:0.8rem;color:var(--text3);font-weight:500;margin-top:4px;display:block">${item.storage} · Qty ${item.qty}</span></div>
+      <div class="osb-price">₹${(item.price*item.qty).toLocaleString('en-IN')}</div>
+    </div>`;
+  }).join('');
+  document.getElementById('checkoutContent').innerHTML = `
+    <div class="checkout-page">
+      <div class="sec-head" style="margin-bottom:2rem"><h2>Secure <span>Checkout</span></h2></div>
+      <div class="checkout-grid">
+        <div>
+          <div class="form-card">
+            <div class="form-card-title"><span class="step-num">1</span>Delivery Address</div>
+            <div class="form-row-2">
+              <div class="f-group"><label>First Name</label><input type="text" placeholder="Rahul"></div>
+              <div class="f-group"><label>Last Name</label><input type="text" placeholder="Sharma"></div>
+            </div>
+            <div class="form-row-1"><div class="f-group"><label>Address Line</label><input type="text" placeholder="Flat/Building, Street, Area"></div></div>
+            <div class="form-row-2">
+              <div class="f-group"><label>City</label><input type="text" placeholder="Mumbai"></div>
+              <div class="f-group"><label>PIN Code</label><input type="text" placeholder="400001"></div>
+            </div>
+            <div class="form-row-2">
+              <div class="f-group"><label>State</label><select><option>Maharashtra</option><option>Delhi</option><option>Karnataka</option><option>Tamil Nadu</option><option>Telangana</option></select></div>
+              <div class="f-group"><label>Mobile</label><input type="tel" value="+91 ${user?.phone||''}"></div>
+            </div>
+          </div>
+          <div class="form-card">
+            <div class="form-card-title"><span class="step-num">2</span>Payment Method</div>
+            <div class="pay-opts">
+              <div class="pay-opt sel" onclick="selPay(this)"><input type="radio" name="pay" checked><span class="pay-opt-icon">💳</span><span class="pay-opt-label">Credit / Debit Card (Visa, Mastercard, Amex)</span></div>
+              <div class="pay-opt" onclick="selPay(this)"><input type="radio" name="pay"><span class="pay-opt-icon">📲</span><span class="pay-opt-label">UPI — GPay / PhonePe / Paytm</span></div>
+              <div class="pay-opt" onclick="selPay(this)"><input type="radio" name="pay"><span class="pay-opt-icon">🏦</span><span class="pay-opt-label">Net Banking</span></div>
+              <div class="pay-opt" onclick="selPay(this)"><input type="radio" name="pay"><span class="pay-opt-icon">💵</span><span class="pay-opt-label">Cash on Delivery (COD)</span></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="order-summ-box">
+            <div class="osb-title">Order Summary (${cart.length} item${cart.length>1?'s':''})</div>
+            ${items}
+            <div class="osb-div"></div>
+            <div class="osb-coupon">
+              <input type="text" placeholder="Coupon / Promo code">
+              <button>Apply</button>
+            </div>
+            <div class="osb-row"><span>Subtotal</span><span>₹${sub.toLocaleString('en-IN')}</span></div>
+            <div class="osb-row"><span>Discount</span><span style="color:var(--green)">−₹0</span></div>
+            <div class="osb-row"><span>GST (5%)</span><span>₹${tax.toLocaleString('en-IN')}</span></div>
+            <div class="osb-row"><span>Delivery</span><span>${ship===0?'<span style="color:var(--green);font-weight:700">FREE</span>':'₹'+ship}</span></div>
+            <div class="osb-div"></div>
+            <div class="osb-row grand"><span>Grand Total</span><span>₹${total.toLocaleString('en-IN')}</span></div>
+            <button class="btn-place" onclick="placeOrder()">Place Order →</button>
+            <div class="secure-note"><div class="secure-dot"></div>256-bit SSL secured · 100% safe transaction</div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+function selPay(el){ document.querySelectorAll('.pay-opt').forEach(e=>e.classList.remove('sel')); el.classList.add('sel'); el.querySelector('input').checked=true; }
+function placeOrder(){
+  const oid = 'TRM'+Date.now().toString().slice(-8);
+  const firstItem = cart[0] ? DB.find(p=>p.id===cart[0].id) : null;
+  cart = []; updateBadges();
+  document.getElementById('checkoutContent').innerHTML = `
+    <div class="success-page">
+      <div class="success-check">✓</div>
+      <h2>Order Placed!</h2>
+      <p>Your order <strong style="color:var(--cyan)">#${oid}</strong> has been confirmed. You'll receive an SMS &amp; email confirmation shortly. Estimated delivery: <strong>2–5 business days</strong>.</p>
+      <button class="btn-buy-now" style="margin-right:12px" onclick="showSection('track');renderTracking('${oid}','${firstItem?.id||'tm-001'}')">Track Order →</button>
+      <button class="btn-add-cart" onclick="goHome()">Continue Shopping</button>
+    </div>`;
+}
+
+// ══════════════════════════════════════════
+// TRACKING
+// ══════════════════════════════════════════
+function renderTracking(oid, phoneId){
+  const p = DB.find(x=>x.id===(phoneId||'tm-001')) || DB[0];
+  const oidDisplay = oid || ('TRM'+Date.now().toString().slice(-8));
+  const now = new Date();
+  const d = n=>{ const x=new Date(now); x.setDate(x.getDate()+n); return x.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}); };
+  const nodes = [
+    {day:'Day 1', date:d(0), title:'Order Confirmed', desc:`Order #${oidDisplay} verified. Quality check passed. Packaging in progress at TruMobile Warehouse, Mumbai.`, done:true, active:false},
+    {day:'Day 2', date:d(1), title:'Dispatched', desc:'In transit. Package handed to BlueDart Express. Arrived at Bhiwandi Regional Hub. AWB tracking active.', done:false, active:true},
+    {day:'Day 3–4', date:d(3), title:'Out for Delivery', desc:'Package arrived at local sorting facility. Dispatched with delivery partner. Expect between 10 AM – 8 PM.', done:false, active:false},
+    {day:'Day 5', date:d(4), title:'Delivered', desc:'Successfully delivered to destination address. Recipient signature collected.', done:false, active:false},
+  ];
+  document.getElementById('trackContent').innerHTML = `
+    <button class="pdp-back-bar" style="background:none;border:none;color:var(--text3);font-size:0.9rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;margin-bottom:2rem;padding:0" onclick="goHome()">← Back to home</button>
+    <h2 style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;margin-bottom:6px;color:var(--text)">Track Order</h2>
+    <div style="font-size:0.9rem;font-weight:500;color:var(--text3);margin-bottom:2.5rem">Order ID: <span style="color:var(--text);font-weight:700">#${oidDisplay}</span> &nbsp;·&nbsp; Est. delivery: <span style="color:var(--cyan);font-weight:700">${d(4)}</span></div>
+    <div class="track-order-card">
+      <div class="toc-img"><img src="${p.img}" onerror="this.src='${p.fallback}'" alt="${p.name}"></div>
+      <div class="toc-info">
+        <div class="toc-name">${p.brand} ${p.name}</div>
+        <div class="toc-price">₹${p.storage[0].price.toLocaleString('en-IN')}</div>
+        <div class="toc-meta">Courier: BlueDart Express &nbsp;·&nbsp; AWB: BD${Math.floor(Math.random()*1e9)}</div>
+      </div>
+      <div class="toc-status-tag status-transit">In Transit</div>
+    </div>
+    <div class="track-timeline">
+      ${nodes.map(n=>`
+        <div class="t-node">
+          <div class="t-dot ${n.done?'done':n.active?'active':''}"></div>
+          <div class="t-date">${n.day} &nbsp;·&nbsp; ${n.date}</div>
+          <div class="t-title ${n.active?'active-txt':''}">${n.title}${n.active?' ← Current Phase':''}</div>
+          <div class="t-desc">${n.desc}</div>
+        </div>`).join('')}
+    </div>`;
+  showSection('track');
+}
+
+// ══════════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════════
+function toast(msg){
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'), 2800);
+}
+</script>
+</body>
+</html>
